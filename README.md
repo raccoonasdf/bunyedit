@@ -3,6 +3,10 @@
 hi! this is a minecraft mod for better than adventure. it's my own take on a
 worldedit-like :)
 
+here's a video showing some features:
+
+https://github.com/raccoonasdf/bunyedit/assets/16406874/f89a8df0-1b98-48fb-95a9-5203d2025e68
+
 someone is already doing this (it's called
 [bta-worldedit](https://github.com/FatherCheese/bta-worldedit)) but i wanted to try it
 myself. thank you to the author of that for inspiration!
