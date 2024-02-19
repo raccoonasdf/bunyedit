@@ -5,7 +5,7 @@ worldedit-like :)
 
 here's a video showing some features:
 
-https://github.com/raccoonasdf/bunyedit/assets/16406874/f89a8df0-1b98-48fb-95a9-5203d2025e68
+[demo.webm](https://github.com/raccoonasdf/bunyedit/assets/16406874/3f1cd0eb-a9d5-4599-b651-8aef30c50dc5)
 
 someone is already doing this (it's called
 [bta-worldedit](https://github.com/FatherCheese/bta-worldedit)) but i wanted to try it
