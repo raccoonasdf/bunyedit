@@ -37,13 +37,13 @@ public class Cursor {
      * <p>
      * i chose a feather because it looks vaguely like a mouse pointer if you squint.
      */
-    private static final ItemStack DEFAULT_CURSOR_ICON = new ItemStack(Item.featherChicken);
+    private static final Item DEFAULT_CURSOR_ICON = Item.featherChicken;
 
     /**
      * get {@link ItemStack} for the default cursor
      */
     public static ItemStack getCursorItem() {
-        ItemStack cursor = DEFAULT_CURSOR_ICON;
+        ItemStack cursor = new ItemStack(DEFAULT_CURSOR_ICON);
         cursor.setCustomName("Cursor");
         cursor.getData().putBoolean("bunyedit.cursor", true);
 
