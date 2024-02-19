@@ -47,7 +47,6 @@ public class MaskCommand extends Command {
                 "cube|cuboid, sphere|ellipsoid, line"));
             sender.sendMessage(i18n.translateKey("bunyedit.cmd.mask.list.hollow"));
             
-            
             return true;
         }
 

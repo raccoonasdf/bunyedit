@@ -10,12 +10,12 @@ public class Masks {
 
     static {
         MASKS.put("cube", new Cuboid(false));
-        MASKS.put("hcube", new Cuboid(false));
+        MASKS.put("hcube", new Cuboid(true));
         MASKS.put("cuboid", new Cuboid(false));
         MASKS.put("hcuboid", new Cuboid(true));
 
         MASKS.put("sphere", new Ellipsoid(false));
-        MASKS.put("hsphere", new Ellipsoid(false));
+        MASKS.put("hsphere", new Ellipsoid(true));
         MASKS.put("ellipsoid", new Ellipsoid(false));
         MASKS.put("hellipsoid", new Ellipsoid(true));
         
