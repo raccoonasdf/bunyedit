@@ -1,0 +1,28 @@
+bunyedit.selection=selection
+bunyedit.selection.primary=primary
+bunyedit.selection.secondary=secondary
+
+bunyedit.cursor.outofrange=no tile in range
+bunyedit.cursor.select=%s at %s
+
+bunyedit.cmd.err.notaplayer=sender is not a player
+bunyedit.cmd.err.toomanyargs=too many arguments
+bunyedit.cmd.err.nosuchblock=block with key %s does not exist
+bunyedit.cmd.err.coordneedsthree=coordinate needs three arguments!
+bunyedit.cmd.err.invalidcoords=invalid coordinate format!
+
+bunyedit.cmd.set.err.nopattern=no pattern provided
+
+bunyedit.cmd.setsel.help.1=prefix ~ for player-relative coordinates
+bunyedit.cmd.setsel.help.2=if no coordinates are supplied, ~ ~ ~ implied
+
+bunyedit.cmd.copy.success=copied!
+
+bunyedit.cmd.undo.err.noundopages=nothing to undo
+bunyedit.cmd.redo.err.noredopages=nothing to redo
+
+bunyedit.cmd.mask.list.header=available masks
+bunyedit.cmd.mask.list.hollow=solids can be prefixed with "h" to hollow them
+bunyedit.cmd.mask.success=mask set!
+bunyedit.cmd.mask.err.nosuchmask=mask with name %s does not exist! try `//mask list`
+bunyedit.cmd.mask.err.nomask=no mask provided! try `//mask list`

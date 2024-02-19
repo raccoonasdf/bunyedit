@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "bunyedit",
+  "version": "${version}",
+
+  "name": "bunyedit",
+  "description": "worldedit for bunys",
+  "authors": [
+    "raccoon!"
+  ],
+  "contact": {
+    "homepage": "www.raccoon.fun",
+    "sources": ""
+  },
+
+	"icon": "icon.png",
+  "license": "MIT",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+			"fun.raccoon.bunyedit.BunyEdit"
+    ]
+  },
+  "mixins": [
+      "bunyedit.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.13.3"
+  },
+  "suggests": {
+  }
+}

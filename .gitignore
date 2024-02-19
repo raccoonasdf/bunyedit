@@ -1,0 +1,13 @@
+# toolchain droppings
+.gradle/
+build/
+bin/
+run/
+run-server/
+
+# editor stuff
+.vscode/
+.idea/
+
+# my jre keeps segfaulting :(
+hs_err_pid*.log

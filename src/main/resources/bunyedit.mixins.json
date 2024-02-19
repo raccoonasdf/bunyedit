@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fun.raccoon.bunyedit.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "InitCommandsMixin",
+    "CursorRightClickMixin"
+  ],
+  "client": [
+    "client.CursorCancelBlockBreakMixin",
+    "client.CursorSwingMixin"
+  ],
+  "server": [
+    "server.CursorCancelBlockBreakMixin",
+    "server.CursorSwingMixin"
+  ]
+}
