@@ -1,4 +1,4 @@
-# bunyedit
+# bunyedit: worldedit for bunys
 
 hi! this is a minecraft mod for better than adventure. it's my own take on a
 worldedit-like :)
