@@ -5,6 +5,7 @@
 - Changed coordinate format to <x>,<y>,<z> (comma-seperated) for easier
   parsing as a single argument
 - Added ^<sway>,^<heave>,^<surge> look-direction relative coordinates
+- Added `//move` and `//movesel`
 
 0.1.0
 -----

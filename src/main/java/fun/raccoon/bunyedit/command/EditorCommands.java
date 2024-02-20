@@ -29,6 +29,18 @@ public class EditorCommands {
                 .build()
         );
         LIST.add(
+            new EditorCommandBuilder("move")
+                .usage("<x>,<y>,<z>")
+                .action(new MoveAction())
+                .build()
+        );
+        LIST.add(
+            new EditorCommandBuilder("movesel")
+                .usage("<x>,<y>,<z>")
+                .action(new MoveSelAction())
+                .build()
+        );
+        LIST.add(
             new EditorCommandBuilder("paste")
                 .action(new PasteAction())
                 .build()

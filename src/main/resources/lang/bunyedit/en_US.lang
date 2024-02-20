@@ -7,6 +7,7 @@ bunyedit.cursor.select=%s at %s
 
 bunyedit.cmd.err.notaplayer=sender is not a player!
 bunyedit.cmd.err.toomanyargs=too many arguments!
+bunyedit.cmd.err.toofewargs=too few arguments!
 bunyedit.cmd.err.nosuchblock=block with key %s does not exist!
 bunyedit.cmd.err.invalidcoords=invalid coordinates format!
 bunyedit.cmd.err.incompleteselection=incomplete selection!
