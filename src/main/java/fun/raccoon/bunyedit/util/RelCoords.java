@@ -35,7 +35,7 @@ public class RelCoords {
             }
         }
 
-        return new ChunkPosition(res[0], res[1], res[2]);
+        return PosMath.fromArray(res);
     }
     
     public static ChunkPosition from(ChunkPosition origin, String triple) {
@@ -62,8 +62,7 @@ public class RelCoords {
                 }
             }
         }
-
-        return new ChunkPosition(res[0], res[1], res[2]);
+        return PosMath.fromArray(res);
     }
 
 

@@ -45,4 +45,12 @@ public class PosMath {
     public static ChunkPosition all(int x) {
         return new ChunkPosition(x, x, x);
     }
+
+    public static int[] toArray(ChunkPosition a) {
+        return new int[]{a.x, a.y, a.z};
+    }
+
+    public static ChunkPosition fromArray(int[] a) {
+        return new ChunkPosition(a[0], a[1], a[2]);
+    }
 }
