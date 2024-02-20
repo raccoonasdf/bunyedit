@@ -7,6 +7,7 @@
 - Added ^<sway>,^<heave>,^<surge> look-direction relative coordinates
 - Added `//move` and `//movesel`
 - Added `//stack`
+- Added `//flip`
 
 0.1.0
 -----

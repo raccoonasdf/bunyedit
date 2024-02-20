@@ -23,6 +23,13 @@ public class EditorCommands {
                 .build()
         );
         LIST.add(
+            new EditorCommandBuilder("flip")
+                .usage("[axis]")
+                .help("bunyedit.cmd.flip.help.1")
+                .action(new FlipAction())
+                .build()
+        );
+        LIST.add(
             new EditorCommandBuilder("selection")
                 .aliases("sel")
                 .action(new GetSelectionAction())

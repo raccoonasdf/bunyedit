@@ -11,10 +11,13 @@ bunyedit.cmd.err.toofewargs=too few arguments!
 bunyedit.cmd.err.nosuchblock=block with key %s does not exist!
 bunyedit.cmd.err.invalidcoords=invalid coordinates format!
 bunyedit.cmd.err.incompleteselection=incomplete selection!
+bunyedit.cmd.err.invalidaxis=invalid axis! please input X,Y,Z, or ^ (look axis)
 bunyedit.cmd.err.invaliddirection=invalid direction! please input N,E,S,W or ^ (look direction)
 bunyedit.cmd.err.invalidnumber=invalid number!
 
 bunyedit.cmd.copy.success=copied!
+
+bunyedit.cmd.flip.help.1=axis is one of X,Y,Z or ^ (look axis)
 
 bunyedit.cmd.set.err.nopattern=no pattern provided
 
