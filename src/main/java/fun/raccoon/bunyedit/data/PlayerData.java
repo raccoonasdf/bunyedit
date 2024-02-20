@@ -22,6 +22,9 @@ public class PlayerData {
     }
 
     public static PlayerData get(EntityPlayer player) {
+        if (player == null)
+            return null;
+
         return PlayerData.get(player.username);
     }
 

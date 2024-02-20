@@ -1,41 +1,24 @@
-package fun.raccoon.bunyedit.command;
+package fun.raccoon.bunyedit.command.action.actions;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.BlockData;
+import fun.raccoon.bunyedit.data.PlayerData;
+import fun.raccoon.bunyedit.data.Selection;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
-import net.minecraft.core.net.command.Command;
 import net.minecraft.core.net.command.CommandError;
-import net.minecraft.core.net.command.CommandHandler;
 import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
-public class SetCommand extends Command {
-    public SetCommand() { super("/set", "/s", "/replace", "/re"); }
-
-    public boolean opRequired(String[] argv) { return true; }
-
-    public void sendCommandSyntax(CommandHandler handler, CommandSender sender) {
-        sender.sendMessage("set|s|replace|re [filter] <pattern>");
-    }
-
-    public boolean execute(CommandHandler handler, CommandSender sender, String[] argv) {
-        I18n i18n = I18n.getInstance();
-
-        EntityPlayer player = sender.getPlayer();
-        if (sender.getPlayer() == null)
-            throw new CommandError(i18n.translateKey("bunyedit.cmd.err.notaplayer"));
-        PlayerData playerData = PlayerData.get(player);
-
-        Selection selection = playerData.selection;
-        if (!selection.isValid())
-            throw new CommandError(i18n.translateKey("bunyedit.cmd.err.incompleteselection"));
-        
+public class SetAction implements ISelectionAction {
+    public boolean apply(
+        I18n i18n, CommandSender sender, EntityPlayer player,
+        PlayerData playerData, Selection selection, String[] argv
+    ) {
         String pattern;
         String filter;
         switch (argv.length) {
