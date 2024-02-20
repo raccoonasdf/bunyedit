@@ -1,0 +1,15 @@
+0.2.0 [in progress]
+-----
+- Restructured command code to make player and selection validity checks
+  universal
+- Changed coordinate format to <x>,<y>,<z> (comma-seperated) for easier
+  parsing as a single argument
+
+0.1.0
+-----
+- Initial release
+- Added selections (`//cursor`, `//1`, `//2`, `//selection`)
+- Added masks (`//mask`)
+- Added set command (`//set`)
+- Added undo history (`//undo`, `//redo`)
+- Added copy buffer (`//copy`, `//paste`)
