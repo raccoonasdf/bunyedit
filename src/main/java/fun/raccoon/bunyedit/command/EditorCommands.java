@@ -48,7 +48,7 @@ public class EditorCommands {
         );
         EditorCommandBuilder setSel =
             new EditorCommandBuilder(null)
-                .usage("", "<x> <y> <z>")
+                .usage("", "<x>,<y>,<z>")
                 .help(
                     "bunyedit.cmd.setsel.help.1",
                     "bunyedit.cmd.setsel.help.2");

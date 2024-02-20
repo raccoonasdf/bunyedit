@@ -8,14 +8,13 @@ bunyedit.cursor.select=%s at %s
 bunyedit.cmd.err.notaplayer=sender is not a player!
 bunyedit.cmd.err.toomanyargs=too many arguments!
 bunyedit.cmd.err.nosuchblock=block with key %s does not exist!
-bunyedit.cmd.err.coordneedsthree=coordinate needs three arguments!
-bunyedit.cmd.err.invalidcoords=invalid coordinate format!
+bunyedit.cmd.err.invalidcoords=invalid coordinates format!
 bunyedit.cmd.err.incompleteselection=incomplete selection!
 
 bunyedit.cmd.set.err.nopattern=no pattern provided
 
 bunyedit.cmd.setsel.help.1=prefix ~ for player-relative coordinates
-bunyedit.cmd.setsel.help.2=if no coordinates are supplied, ~ ~ ~ implied
+bunyedit.cmd.setsel.help.2=if no coordinates are supplied, ~,~,~ implied
 
 bunyedit.cmd.copy.success=copied!
 
