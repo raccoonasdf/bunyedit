@@ -28,6 +28,21 @@ public class BlockData {
      */
     public CompoundTag nbt;
 
+    /**
+     * Air.
+     */
+    public BlockData() {
+        this.id = 0;
+        this.meta = 0;
+        this.nbt = null;
+    }
+
+    public BlockData(Block block) {
+        this.id = block.id;
+        this.meta = 0;
+        this.nbt = null;
+    }
+
     public BlockData(int id, int meta, CompoundTag nbt) {
         this.id = id;
         this.meta = meta;
