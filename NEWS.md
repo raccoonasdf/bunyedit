@@ -2,9 +2,9 @@
 -----
 - Restructured command code to make player and selection validity checks
   universal
-- Changed coordinate format to <x>,<y>,<z> (comma-seperated) for easier
+- Changed coordinate format to `<x>,<y>,<z>` (comma-seperated) for easier
   parsing as a single argument
-- Added ^<sway>,^<heave>,^<surge> look-direction relative coordinates
+- Added `^<sway>,^<heave>,^<surge>` look-direction relative coordinates
 - Added `//move` and `//movesel`
 - Added `//stack`
 - Added `//flip`
