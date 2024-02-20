@@ -67,6 +67,16 @@ public class EditorCommands {
         LIST.add(setSel.name("1").action(new SetSelectionAction(Slot.PRIMARY)).build());
         LIST.add(setSel.name("2").action(new SetSelectionAction(Slot.SECONDARY)).build());
         LIST.add(
+            new EditorCommandBuilder("stack")
+                .usage("[times] [direction] [offset]")
+                .help(
+                    "bunyedit.cmd.stack.help.1",
+                    "bunyedit.cmd.stack.help.2",
+                    "bunyedit.cmd.stack.help.3")
+                .action(new StackAction())
+                .build()
+        );
+        LIST.add(
             new EditorCommandBuilder("undo")
                 .action(new UndoRedoAction(Which.UNDO))
                 .build()

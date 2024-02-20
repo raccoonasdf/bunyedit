@@ -6,6 +6,7 @@
   parsing as a single argument
 - Added ^<sway>,^<heave>,^<surge> look-direction relative coordinates
 - Added `//move` and `//movesel`
+- Added `//stack`
 
 0.1.0
 -----

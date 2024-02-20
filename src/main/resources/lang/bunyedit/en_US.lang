@@ -11,19 +11,25 @@ bunyedit.cmd.err.toofewargs=too few arguments!
 bunyedit.cmd.err.nosuchblock=block with key %s does not exist!
 bunyedit.cmd.err.invalidcoords=invalid coordinates format!
 bunyedit.cmd.err.incompleteselection=incomplete selection!
+bunyedit.cmd.err.invaliddirection=invalid direction! please input N,E,S,W or ^ (look direction)
+bunyedit.cmd.err.invalidnumber=invalid number!
+
+bunyedit.cmd.copy.success=copied!
 
 bunyedit.cmd.set.err.nopattern=no pattern provided
 
 bunyedit.cmd.setsel.help.1=prefix ~ for player-relative coordinates
 bunyedit.cmd.setsel.help.2=if no coordinates are supplied, ~,~,~ implied
 
-bunyedit.cmd.copy.success=copied!
-
-bunyedit.cmd.undoredo.err.nopages=nothing to %s!
-bunyedit.cmd.undoredo.undo=undo
-bunyedit.cmd.undoredo.redo=redo
-
 bunyedit.cmd.mask.list.header=available masks
 bunyedit.cmd.mask.list.hollow=solids can be prefixed with "h" to hollow them
 bunyedit.cmd.mask.success=mask set!
 bunyedit.cmd.mask.err.nosuchmask=mask with name %s does not exist! try `//mask list`
+
+bunyedit.cmd.stack.help.1=direction is one of N,E,S,W or ^ (look direction)
+bunyedit.cmd.stack.help.2=offset is a relative coordinate to add to each iteration
+bunyedit.cmd.stack.help.3=e.g. //stack 10 ^ ^,^-1,^ makes a set of downward stairs
+
+bunyedit.cmd.undoredo.err.nopages=nothing to %s!
+bunyedit.cmd.undoredo.undo=undo
+bunyedit.cmd.undoredo.redo=redo
