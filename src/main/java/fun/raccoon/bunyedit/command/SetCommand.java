@@ -79,8 +79,8 @@ public class SetCommand extends Command {
         BlockBuffer after = new BlockBuffer();
 
         stream.forEach(pos -> {
-            after.put(pos, new BlockData(player.world, pos));
             blockData.place(player.world, pos);
+            after.put(pos, new BlockData(player.world, pos));
         });
         playerData.undoTape.push(before, after);
 
