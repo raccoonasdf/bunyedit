@@ -3,6 +3,9 @@
 hi! this is a minecraft mod for better than adventure. it's my own take on a
 worldedit-like :)
 
+it works as a mod and as a "server plugin": you have to install the mod on the client to
+use it in singleplayer, but only the server needs it in multiplayer.
+
 here's a video showing some features:
 
 [demo.webm](https://github.com/raccoonasdf/bunyedit/assets/16406874/3f1cd0eb-a9d5-4599-b651-8aef30c50dc5)
@@ -13,15 +16,6 @@ myself. thank you to the author of that for inspiration!
 
 this is not a fork of either worldedit or bta-worldedit, but i have read bits of their
 code.
-
-## building and installing
-
-please read [BTA Wiki: Modding](https://bta.miraheze.org/wiki/Modding) if you don't know
-how to set up your editor for this. building should be simple after that. i'll probably
-have prebuilt jars once this is a little less experimental.
-
-you have to install the mod on the client to use it in singleplayer, but only the server
-needs it in multiplayer.
 
 ## differences from bta-worldedit
 
