@@ -25,7 +25,7 @@ public class SetSelectionAction implements IPlayerAction {
         ChunkPosition pos;
         switch (argv.length) {
             case 0:
-                pos = RelCoords.playerPosition(player, false);
+                pos = RelCoords.playerPos(player, false);
                 break;
             case 1:
                 pos = RelCoords.from(player, argv[0]);
