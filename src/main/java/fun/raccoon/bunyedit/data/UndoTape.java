@@ -7,8 +7,9 @@ import java.util.List;
  * A sequence of {@link BlockBuffer} pairs each representing the state of a
  * region before and after an action was performed.
  * <p>
- * Acts somewhat like a stack, however the tape head moves backward from the end
- * of the sequence without popping items, preserving forward history.
+ * Acts somewhat like a stack, but the tape head moves across the tape without
+ * popping items, allowing you to {@link #undo} and then {@link #redo} later
+ * without losing history as long as the tape isn't edited in the meantime.
  */
 public class UndoTape {
     private List<BlockBuffer[]> pages = new ArrayList<>();
