@@ -5,6 +5,7 @@ import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.util.PosMath;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -23,13 +24,13 @@ public class PasteAction implements ISelectionAction {
             
         BlockBuffer before = new BlockBuffer();
         playerData.copyBuffer.forEach((pos, blockData) -> {
-            pos = new ChunkPosition(pos.x + origin.x, pos.y + origin.y, pos.z + origin.z);
+            pos = PosMath.add(pos, origin);
             before.put(pos, new BlockData(player.world, pos));
         });
 
         BlockBuffer after = new BlockBuffer();
         playerData.copyBuffer.forEach((pos, blockData) -> {
-            pos = new ChunkPosition(pos.x + origin.x, pos.y + origin.y, pos.z + origin.z);
+            pos = PosMath.add(pos, origin);
             after.put(pos, blockData);
             blockData.place(player.world, pos);
         });

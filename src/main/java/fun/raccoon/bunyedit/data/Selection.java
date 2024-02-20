@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import fun.raccoon.bunyedit.data.mask.IMask;
 import fun.raccoon.bunyedit.data.mask.masks.Masks;
+import fun.raccoon.bunyedit.util.PosMath;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
@@ -86,6 +87,13 @@ public class Selection {
         return this.get(Slot.SECONDARY);
     }
 
+    public ChunkPosition getRelSecondary() {
+        ChunkPosition s1 = this.getPrimary();
+        ChunkPosition s2 = this.getSecondary();
+
+        return PosMath.sub(s2, s1);
+    }
+
     public void setSecondary(World world, ChunkPosition coords) {
         this.set(Slot.SECONDARY, world, coords);
     }
@@ -134,11 +142,9 @@ public class Selection {
 
         this.coordStream().forEach(pos -> {
             page.put(
-                relative
-                    ? new ChunkPosition(
-                        pos.x - origin.x, pos.y - origin.y, pos.z - origin.z)
-                    : pos,
-                new BlockData(this.world, pos));
+                relative ? PosMath.sub(pos, origin) : pos,
+                new BlockData(this.world, pos)
+            );
         });
 
         return page;
