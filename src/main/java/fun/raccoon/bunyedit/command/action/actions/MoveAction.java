@@ -5,6 +5,7 @@ import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.util.LookDirection;
 import fun.raccoon.bunyedit.util.PosMath;
 import fun.raccoon.bunyedit.util.RelCoords;
 import net.minecraft.core.entity.player.EntityPlayer;
@@ -24,7 +25,7 @@ public class MoveAction implements ISelectionAction {
             case 0:
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toofewargs"));
             case 1:
-                pasteOrigin = RelCoords.from(copyOrigin, player.yRot, player.xRot, argv[0]);
+                pasteOrigin = RelCoords.from(copyOrigin, new LookDirection(player), argv[0]);
                 break;
             default:
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
