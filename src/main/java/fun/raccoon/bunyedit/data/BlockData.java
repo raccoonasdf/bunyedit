@@ -73,11 +73,30 @@ public class BlockData {
      */
     public static BlockData fromString(String string) {
         String[] parts = string.split(":");
+        if (parts.length > 2)
+            return null;
+
         String key = parts[0];
+
+        int id;
         int meta = 0;
 
         if (key.equals("air"))
             return new BlockData(0, 0, null);
+
+        try {
+            id = Integer.parseInt(parts[0]);
+        } catch (NumberFormatException e) {
+            Block block = Arrays.stream(Block.blocksList)
+                .filter(b -> b != null && b.getKey().equalsIgnoreCase("tile." + key))
+                .findAny()
+                .orElse(null);
+            
+            if (block == null)
+                return null;
+            
+            id = block.id;
+        }
 
         if (parts.length == 2) {
             try {
@@ -85,15 +104,9 @@ public class BlockData {
             } catch (NumberFormatException e) {
                 return null;
             }
-        } else if (parts.length > 2) {
-            return null;
         }
-        Block block = Arrays.stream(Block.blocksList)
-            .filter(b -> b != null && b.getKey().equalsIgnoreCase("tile." + key))
-            .findAny()
-            .orElse(null);
         
-        return new BlockData(block.id, meta, null);
+        return new BlockData(id, meta, null);
     }
 
     /**

@@ -1,3 +1,7 @@
+0.3.0 [in progress]
+-----
+- Added support for specifying blocks by ID in commands
+
 0.2.0
 -----
 - Restructured command code to make player and selection validity checks
