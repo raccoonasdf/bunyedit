@@ -1,5 +1,6 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,6 +11,7 @@ import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.util.Filter;
+import fun.raccoon.bunyedit.util.Pattern;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -21,26 +23,26 @@ public class SetAction implements ISelectionAction {
         I18n i18n, CommandSender sender, EntityPlayer player,
         PlayerData playerData, Selection selection, String[] argv
     ) {
-        String pattern;
+        String patternStr;
         String filterStr;
         switch (argv.length) {
             case 0:
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.set.err.nopattern"));
             case 1:
                 filterStr = null;
-                pattern = argv[0];
+                patternStr = argv[0];
                 break;
             case 2:
                 filterStr = argv[0];
-                pattern = argv[1];
+                patternStr = argv[1];
                 break;
             default:
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         }
 
-        BlockData blockData = BlockData.fromString(pattern);
-        if (blockData == null)
-            throw new CommandError(i18n.translateKeyAndFormat("bunyedit.cmd.err.nosuchblock", pattern));
+        Function<BlockData, BlockData> pattern = Pattern.fromString(patternStr);
+        if (pattern == null)
+            throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidpattern"));
 
         Stream<ChunkPosition> stream = selection.coordStream();
 
@@ -61,8 +63,9 @@ public class SetAction implements ISelectionAction {
         BlockBuffer after = new BlockBuffer();
 
         stream.forEach(pos -> {
+            BlockData blockData = pattern.apply(new BlockData(player.world, pos));
             blockData.place(player.world, pos);
-            after.put(pos, new BlockData(player.world, pos));
+            after.put(pos, blockData);
         });
         playerData.undoTape.push(before, after);
 

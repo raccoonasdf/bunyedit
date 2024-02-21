@@ -17,7 +17,13 @@ key: <str>[.<str>[...]][;]
 ```
 - Added config file
 - Added rudimentary permissions system: can be configured to let players
-  in specific gamemodes to access bunyedit
+  in specific gamemodes access bunyedit
+- Added weighted random pattern type:
+```
+<weightedBlock>[/<weightedBlock>[...]]
+
+weightedBlock: [<int>*]<block>
+```
 
 0.2.0
 -----
