@@ -1,4 +1,6 @@
+![bunyedit logo](https://github.com/raccoonasdf/bunyedit/blob/master/bunyedit-256.png?raw=true)
 # bunyedit: worldedit for bunys
+
 
 hi! this is a minecraft mod for better than adventure. it's my own take on a
 worldedit-like :)
