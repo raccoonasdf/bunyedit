@@ -15,6 +15,9 @@ meta: (<int>|<range>|*)
 range: (<int>..<int>|<int>..|..<int>)
 key: <str>[.<str>[...]][;]
 ```
+- Added config file
+- Added rudimentary permissions system: can be configured to let players
+  in specific gamemodes to access bunyedit
 
 0.2.0
 -----

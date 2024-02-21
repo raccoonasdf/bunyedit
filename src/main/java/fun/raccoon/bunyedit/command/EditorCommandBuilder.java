@@ -16,7 +16,7 @@ public class EditorCommandBuilder {
     private List<String> usage = new ArrayList<>();
     private List<String> helpLines = new ArrayList<>();
 
-    private Predicate<String[]> requiresOp = Predicates.alwaysTrue();
+    private Predicate<String[]> requiresOp = Predicates.alwaysFalse();
 
     private IAction action;
 
