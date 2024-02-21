@@ -32,20 +32,4 @@ code.
 
 ## documentation
 
-i'll get around to doing real docs when this is 1.0 quality.
-
-here's the gist for now:
-1. use `//cursor` to get the cursor item.
-2. with the cursor in your paw, left click and right click to select the corners of the
-   cuboid you want to operate on.
-3. use `//set`, `//copy`, and `//paste` to do something with that selection.
-4. use `//undo` and `//redo` if you mess up.
-
-note that we prefer to avoid creating too many top-level commands so some features are
-exposed differently from worldedit:
-
-1. `//set` and `//replace` are really the same command: `//set [filter] <pattern>`
-2. shapes are created using the 'selection masking' feature, which modifies selection
-   behavior for *all commands*. the default shape is `cuboid`, but you can do
-   `//mask <shape>` to get a `spheroid`, `hcuboid` (hollow cuboid), et cetera.
-   try `//mask list` :)
+see [the wiki](https://wiki.raccoon.fun/minecraft:mod:my-mods:bunyedit:start)!
