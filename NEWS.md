@@ -1,6 +1,20 @@
 0.3.0 [in progress]
 -----
 - Added support for specifying blocks by ID in commands
+- Added expanded filter syntax:
+```
+<filter>[/<filter>[...]]
+
+filter: [!](<block>|#<material>)
+
+block: <id>[:<meta>]
+
+id: (<int>|<range>|<key>|*)
+meta: (<int>|<range>|*)
+
+range: (<int>..<int>|<int>..|..<int>)
+key: <str>[.<str>[...]][;]
+```
 
 0.2.0
 -----

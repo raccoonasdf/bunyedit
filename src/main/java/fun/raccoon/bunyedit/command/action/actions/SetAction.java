@@ -1,5 +1,6 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -8,6 +9,7 @@ import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.util.Filter;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -20,16 +22,16 @@ public class SetAction implements ISelectionAction {
         PlayerData playerData, Selection selection, String[] argv
     ) {
         String pattern;
-        String filter;
+        String filterStr;
         switch (argv.length) {
             case 0:
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.set.err.nopattern"));
             case 1:
-                filter = null;
+                filterStr = null;
                 pattern = argv[0];
                 break;
             case 2:
-                filter = argv[0];
+                filterStr = argv[0];
                 pattern = argv[1];
                 break;
             default:
@@ -42,15 +44,12 @@ public class SetAction implements ISelectionAction {
 
         Stream<ChunkPosition> stream = selection.coordStream();
 
-        if (filter != null) {
+        if (filterStr != null) {
+            Predicate<BlockData> filter = Filter.fromString(filterStr);
+            if (filter == null)
+                throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidfilter"));
             stream = stream
-                .filter(pos -> {
-                    BlockData filterData = BlockData.fromString(filter);
-                    if (filterData == null)
-                        throw new CommandError(i18n.translateKeyAndFormat("bunyedit.cmd.err.nosuchblock", filter));
-
-                    return filterData.idMetaMatches(player.world, pos);
-                })
+                .filter(pos -> filter.test(new BlockData(player.world, pos)))
                 // this might look silly. but we need the filter to be greedy
                 //
                 // consider //set sugarcane <...>: if we aren't greedy here,

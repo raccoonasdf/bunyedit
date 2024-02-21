@@ -14,6 +14,7 @@ bunyedit.cmd.err.incompleteselection=incomplete selection!
 bunyedit.cmd.err.invalidaxis=invalid axis! please input X,Y,Z, or ^ (look axis)
 bunyedit.cmd.err.invaliddirection=invalid direction! please input N,E,S,W or ^ (look direction)
 bunyedit.cmd.err.invalidnumber=invalid number!
+bunyedit.cmd.err.invalidfilter=invalid filter format!
 
 bunyedit.cmd.copy.success=copied!
 
