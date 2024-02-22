@@ -7,7 +7,7 @@ import fun.raccoon.bunyedit.data.Selection;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 /**
- * {@link IMask} implemented with an iterative algorithm.
+ * Mask implemented with an iterative algorithm.
  */
 public abstract class IterativeMask implements BiPredicate<Selection, ChunkPosition> {
     private HashSet<ChunkPosition> cachedResponse;
