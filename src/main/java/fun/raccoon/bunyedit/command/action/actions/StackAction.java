@@ -5,16 +5,17 @@ import java.util.Map;
 import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.BlockData;
+import fun.raccoon.bunyedit.data.LookDirection;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
-import fun.raccoon.bunyedit.util.GlobalDirection;
-import fun.raccoon.bunyedit.util.LookDirection;
+import fun.raccoon.bunyedit.util.DirectionHelper;
 import fun.raccoon.bunyedit.util.PosMath;
 import fun.raccoon.bunyedit.util.RelCoords;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
 import net.minecraft.core.net.command.CommandSender;
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class StackAction implements ISelectionAction {
@@ -27,7 +28,7 @@ public class StackAction implements ISelectionAction {
 
         LookDirection lookDir = new LookDirection(player);
 
-        GlobalDirection direction = GlobalDirection.from(lookDir);
+        Direction direction = DirectionHelper.from(lookDir);
         int times = 1;
         ChunkPosition offset = PosMath.all(0);
         if (argv.length >= 1) {
@@ -41,12 +42,9 @@ public class StackAction implements ISelectionAction {
         }
         if (argv.length >= 2) {
             if (!argv[1].equals("^")) {
-                try {
-                    GlobalDirection directionFromArg = GlobalDirection.valueOf(argv[1].toUpperCase());
-                    direction = directionFromArg;
-                } catch (IllegalArgumentException e) {
+                direction = DirectionHelper.fromAbbrev(argv[1].toUpperCase());
+                if (direction == null)
                     throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invaliddirection"));
-                }
             }
         }
         if (argv.length == 3) {
@@ -59,7 +57,7 @@ public class StackAction implements ISelectionAction {
 
         offset = PosMath.add(
             offset,
-            PosMath.mul(direction.signum(), sdim)
+            PosMath.mul(PosMath.directionOffset(direction), sdim)
         );
 
         BlockBuffer before = selection.copy(false);

@@ -1,17 +1,21 @@
-package fun.raccoon.bunyedit.util;
+package fun.raccoon.bunyedit.data;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.util.helper.Axis;
+import net.minecraft.core.util.helper.Direction;
+
+import fun.raccoon.bunyedit.util.DirectionHelper;
 
 
 /**
  * Determines a mapping from [x, y, z] to [sway, heave, surge]
  */
 public class LookDirection {
-    private Map<Integer, Integer> map = new HashMap<>();
-    private Map<Integer, Boolean> invMap = new HashMap<>();
+    private Map<LookAxis, Axis> map = new HashMap<>();
+    private Map<LookAxis, Boolean> invMap = new HashMap<>();
     
     private static int[] snapRot(float yRot, float xRot) {
         yRot = (yRot % 360F);
@@ -35,25 +39,25 @@ public class LookDirection {
         //boolean[] invMap = new boolean[3];
 
         // heading along z on even, x on odd
-        int yRotDir = (yRotInt&1) == 0 ? 2 : 0;
+        Axis yRotDir = (yRotInt&1) == 0 ? Axis.Z : Axis.X;
         // middle semicircle heads negative
         boolean invYRotDir = (yRotInt&1) != ((yRotInt&2)>>1);
 
         // swaying along x on even, z on odd
-        map.put(0, (yRotInt&1) == 0 ? 0 : 2);
+        map.put(LookAxis.SWAY, (yRotInt&1) == 0 ? Axis.X : Axis.Z);
         // latter semicircle sways negative
-        invMap.put(0, (yRotInt&2) == 2);
+        invMap.put(LookAxis.SWAY, (yRotInt&2) == 2);
 
 
         // looking up or down surges along Y
-        map.put(2, (xRotInt != 0) ? 1 : yRotDir);
+        map.put(LookAxis.SURGE, (xRotInt != 0) ? Axis.Y : yRotDir);
         // looking up surges negative
-        invMap.put(2, (xRotInt != 0) ? (xRotInt == 1) : invYRotDir);
+        invMap.put(LookAxis.SURGE, (xRotInt != 0) ? (xRotInt == 1) : invYRotDir);
 
         // looking up or down heaves along heading
-        map.put(1, (xRotInt != 0) ? yRotDir : 1);
+        map.put(LookAxis.HEAVE, (xRotInt != 0) ? yRotDir : Axis.Y);
         // looking up heaves negative
-        invMap.put(1, (xRotInt != 0) ? (xRotInt == -1)^invYRotDir : false);
+        invMap.put(LookAxis.HEAVE, (xRotInt != 0) ? (xRotInt == -1)^invYRotDir : false);
     }
 
     public LookDirection(EntityPlayer player) {
@@ -63,14 +67,18 @@ public class LookDirection {
     /**
      * Mapping from local coordinate axes to global ones.
      */
-    public int getGlobalAxis(int localComponent) {
+    public Axis globalAxis(LookAxis localComponent) {
         return map.get(localComponent);
     }
 
     /**
      * Whether a local component is heading negative in its global axis mapping.
      */
-    public boolean getGlobalInv(int localComponent) {
+    public boolean globalInv(LookAxis localComponent) {
         return invMap.get(localComponent);
+    }
+
+    public Direction global() {
+        return DirectionHelper.from(this);
     }
 }

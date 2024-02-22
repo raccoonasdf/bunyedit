@@ -3,6 +3,7 @@ package fun.raccoon.bunyedit.util;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class PosMath {
@@ -52,5 +53,12 @@ public class PosMath {
 
     public static ChunkPosition fromArray(int[] a) {
         return new ChunkPosition(a[0], a[1], a[2]);
+    }
+
+    public static ChunkPosition directionOffset(Direction direction) {
+        return new ChunkPosition(
+            direction.getOffsetX(),
+            direction.getOffsetY(),
+            direction.getOffsetZ());
     }
 }

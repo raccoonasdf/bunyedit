@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.util;
 
+import fun.raccoon.bunyedit.data.LookAxis;
+import fun.raccoon.bunyedit.data.LookDirection;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
@@ -17,12 +19,13 @@ public class RelCoords {
 
         int[] res = new int[3];
 
+        LookAxis[] lookAxes = LookAxis.values();
         for (int i = 0; i < triple_.length; ++i) {
             if (!triple_[i].startsWith("^"))
                 return from(origin, triple);
             
-            int axis = lookDir.getGlobalAxis(i);
-            boolean inv = lookDir.getGlobalInv(i);
+            int axis = lookDir.globalAxis(lookAxes[i]).ordinal();
+            boolean inv = lookDir.globalInv(lookAxes[i]);
 
             res[axis] = origin_[axis];
 
