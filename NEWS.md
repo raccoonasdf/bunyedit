@@ -5,9 +5,17 @@
 - `onBlockRemoved` and `onBlockAdded` events are no longer triggered
   by editor actions
 - `//flip` now reorients blocks that can be placed directionally
-- masks can now take arguments. no additional functionality for now, but
+- Masks can now take arguments. No additional functionality for now, but
   hollow variants are now specified as e.g. `//mask cube h` instead of
   `//mask hcube`
+- Added `//growsel`
+```
+//growsel [grow]
+
+grow: <growDir>[,<growDir>...]
+
+growDir: (S|N|E|W|U|D|F|B|L|R|*)[<int>]
+```
 
 0.3.0
 -----

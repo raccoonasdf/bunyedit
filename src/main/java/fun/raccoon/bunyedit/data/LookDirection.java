@@ -60,6 +60,10 @@ public class LookDirection {
         invMap.put(LookAxis.HEAVE, (xRotInt != 0) ? (xRotInt == -1)^invYRotDir : false);
     }
 
+    public LookDirection(float yRot) {
+        this(yRot, 0F);
+    }
+
     public LookDirection(EntityPlayer player) {
         this(player.yRot, player.xRot);
     }
@@ -78,7 +82,7 @@ public class LookDirection {
         return invMap.get(localComponent);
     }
 
-    public Direction global() {
-        return DirectionHelper.from(this);
+    public Direction globalDir(LookAxis localComponent) {
+        return DirectionHelper.from(this.globalAxis(localComponent), this.globalInv(localComponent));
     }
 }

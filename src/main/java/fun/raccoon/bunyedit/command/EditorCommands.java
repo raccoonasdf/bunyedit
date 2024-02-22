@@ -36,6 +36,12 @@ public class EditorCommands {
                 .build()
         );
         LIST.add(
+            new EditorCommandBuilder("growsel")
+                .usage("[grow]")
+                .action(new GrowSelAction())
+                .build()
+        );
+        LIST.add(
             new EditorCommandBuilder("move")
                 .usage("<x>,<y>,<z>")
                 .action(new MoveAction())
