@@ -4,6 +4,7 @@
   the entire buffer is done being placed
 - `onBlockRemoved` and `onBlockAdded` events are no longer triggered
   by editor actions
+- `//flip` now reorients blocks that can be placed directionally
 
 0.3.0
 -----

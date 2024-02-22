@@ -7,6 +7,7 @@ import fun.raccoon.bunyedit.data.LookDirection;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.util.PosMath;
+import fun.raccoon.bunyedit.util.Reorient;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -48,6 +49,8 @@ public class FlipAction implements ISelectionAction {
 
         BlockBuffer copyBuffer = selection.copy(false);
         copyBuffer.forEach((pos, blockData) -> {
+            blockData = Reorient.flipped(blockData, axis);
+
             int[] posa = PosMath.toArray(pos);
             posa[axis.ordinal()] = side2 - (posa[axis.ordinal()] - side1);
             pos = PosMath.fromArray(posa);
