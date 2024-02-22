@@ -17,14 +17,19 @@ public interface IPlayerAction extends IAction {
         if (player == null)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.notaplayer"));
         
-        if (!sender.isAdmin()) {
-            if (
-                (player.gamemode.equals(Gamemode.creative) && !BunyEdit.ALLOWED_CREATIVE)
-                || (player.gamemode.equals(Gamemode.survival) && !BunyEdit.ALLOWED_SURVIVAL)
-            ) {
-                throw new CommandError(i18n.translateKey("bunyedit.cmd.err.insufficientperms"));
+        boolean allowed = false;
+        if (sender.isAdmin()) {
+            allowed = true;
+        } else {
+            if (player.gamemode.equals(Gamemode.creative) && BunyEdit.ALLOWED_CREATIVE) {
+                allowed = true;
+            } else if (player.gamemode.equals(Gamemode.survival) && BunyEdit.ALLOWED_SURVIVAL) {
+                allowed = true;
             }
         }
+
+        if (!allowed)
+            throw new CommandError(i18n.translateKey("bunyedit.cmd.err.insufficientperms"));
         
         return apply(i18n, sender, sender.getPlayer(), PlayerData.get(player), argv);
     }
