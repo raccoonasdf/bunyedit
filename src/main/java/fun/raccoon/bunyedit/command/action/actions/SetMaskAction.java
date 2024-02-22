@@ -1,14 +1,20 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import java.util.Arrays;
+import java.util.Map.Entry;
+import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
+
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
-import fun.raccoon.bunyedit.data.mask.IMask;
-import fun.raccoon.bunyedit.data.mask.masks.Masks;
+import fun.raccoon.bunyedit.data.mask.IMaskCommand;
+import fun.raccoon.bunyedit.data.mask.Masks;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
 import net.minecraft.core.net.command.CommandSender;
+import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class SetMaskAction implements IPlayerAction {
     public boolean apply(
@@ -18,32 +24,42 @@ public class SetMaskAction implements IPlayerAction {
         String maskName;
         switch (argv.length) {
             case 0:
-                maskName = "cuboid";
-                break;
-            case 1:
+                sender.sendMessage(String.format("%s: %s",
+                    i18n.translateKey("bunyedit.cmd.mask.current"),
+                    playerData.selection.getMaskName()));
+                return true;
+            default:
                 maskName = argv[0];
                 break;
-            default:
-                throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         }
 
         if (maskName.equals("list")) {
-            sender.sendMessage(String.format("%s: %s",
-                i18n.translateKey("bunyedit.cmd.mask.list.header"),
-                //Masks.MASKS.keySet().stream().collect(Collectors.joining(", "))
-                "cube|cuboid, sphere|ellipsoid, line"));
-            sender.sendMessage(i18n.translateKey("bunyedit.cmd.mask.list.hollow"));
+            sender.sendMessage(String.format("%s:",
+                i18n.translateKey("bunyedit.cmd.mask.list.header")));
+            
+            for (Entry<String, IMaskCommand> entry : Masks.MASKS.entrySet()) {
+                sender.sendMessage(String.format("%s %s",
+                    entry.getKey(),
+                    entry.getValue().usage()));
+            }
             
             return true;
         }
 
-        IMask mask = Masks.MASKS.get(maskName);
-        if (mask == null)
+        IMaskCommand maskCmd = Masks.MASKS.get(maskName);
+        if (maskCmd == null)
             throw new CommandError(i18n.translateKeyAndFormat("bunyedit.cmd.mask.err.nosuchmask", maskName));
 
-        Selection selection = playerData.selection;
+        String[] maskArgv = {};
+        if (argv.length >= 1) {
+            maskArgv = Arrays.copyOfRange(argv, 1, argv.length);
+        }
 
-        selection.setMask(mask);
+        BiPredicate<Selection, ChunkPosition> mask = maskCmd.build(maskArgv);
+        if (mask == null)
+            throw new CommandError(i18n.translateKey("bunyedit.cmd.err.buildmaskfailed"));
+
+        playerData.selection.setMask(maskName+" "+Arrays.stream(maskArgv).collect(Collectors.joining(" ")), mask);
 
         sender.sendMessage(i18n.translateKey("bunyedit.cmd.mask.success"));
 

@@ -2,11 +2,10 @@ package fun.raccoon.bunyedit.data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiPredicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import fun.raccoon.bunyedit.data.mask.IMask;
-import fun.raccoon.bunyedit.data.mask.masks.Masks;
 import fun.raccoon.bunyedit.util.PosMath;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.ChunkPosition;
@@ -42,7 +41,10 @@ public class Selection {
 
     private Map<Slot, ChunkPosition> selection;
     private World world;
-    private IMask mask = Masks.MASKS.get("cuboid");
+    // this is not part of mask because we might someday want to set a programmatic
+    // BiPredicate that doesn't come from any particular IMaskCommand
+    private String maskName = "cube";
+    private BiPredicate<Selection, ChunkPosition> mask = (selection, pos) -> true;
 
     public Selection() {
         this.selection = new HashMap<>();
@@ -98,11 +100,16 @@ public class Selection {
         this.set(Slot.SECONDARY, world, coords);
     }
 
-    public void setMask(IMask mask) {
+    public void setMask(String name, BiPredicate<Selection, ChunkPosition> mask) {
+        this.maskName = name;
         this.mask = mask;
     }
 
-    public IMask getMask() {
+    public String getMaskName() {
+        return this.maskName;
+    }
+
+    public BiPredicate<Selection, ChunkPosition> getMask() {
         return this.mask;
     }
 
@@ -128,7 +135,7 @@ public class Selection {
             x -> this.rangeClosed(primary.y, secondary.y).flatMap(
                 y -> this.rangeClosed(primary.z, secondary.z).map(
                     z -> new ChunkPosition(x, y, z))))
-            .filter(pos -> mask.isOver(this, pos));
+            .filter(pos -> mask.test(this, pos));
     }
 
     /**
