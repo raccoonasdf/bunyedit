@@ -47,13 +47,13 @@ public class MoveAction implements ISelectionAction {
             before.put(pastePos, new BlockData(player.world, pastePos));
 
             // but now pastePos has what's in the copyBuffer
-            after.put(pastePos, blockData);
-            blockData.place(player.world, pastePos);
+            after.placeRaw(player.world, pastePos, blockData);
 
             // and copyPos has nothing
-            after.put(copyPos, air);
-            air.place(player.world, copyPos);
+            after.placeRaw(player.world, copyPos, air);
         });
+        after.finalize(player.world);
+        
         playerData.undoTape.push(before, after);
 
         return true;

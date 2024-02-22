@@ -31,9 +31,10 @@ public class PasteAction implements ISelectionAction {
         BlockBuffer after = new BlockBuffer();
         playerData.copyBuffer.forEach((pos, blockData) -> {
             pos = PosMath.add(pos, origin);
-            after.put(pos, blockData);
-            blockData.place(player.world, pos);
+            after.placeRaw(player.world, pos, blockData);
         });
+        after.finalize(player.world);
+        
         playerData.undoTape.push(before, after);
 
         return true;

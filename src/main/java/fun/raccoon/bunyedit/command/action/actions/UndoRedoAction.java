@@ -36,9 +36,11 @@ public class UndoRedoAction implements IPlayerAction {
                     : "bunyedit.cmd.undoredo.redo")));
         }
 
+        BlockBuffer after = new BlockBuffer();
         page.forEach((pos, blockData) -> {
-            blockData.place(player.world, pos);
+            after.placeRaw(player.world, pos, blockData);
         });
+        after.finalize(player.world);
 
         return true;
     }

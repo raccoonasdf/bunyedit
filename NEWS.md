@@ -1,3 +1,10 @@
+0.4.0 [in progress]
+-------------------
+- Blocks are no longer notified of newly placed neighbor blocks until
+  the entire buffer is done being placed
+- `onBlockRemoved` and `onBlockAdded` events are no longer triggered
+  by editor actions
+
 0.3.0
 -----
 - Added support for specifying blocks by ID in commands

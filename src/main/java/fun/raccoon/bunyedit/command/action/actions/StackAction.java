@@ -73,10 +73,12 @@ public class StackAction implements ISelectionAction {
                 pos = PosMath.add(pos, PosMath.mul(offset, PosMath.all(i+1)));
 
                 before.put(pos, new BlockData(player.world, pos));
-                after.put(pos, blockData);
-                blockData.place(player.world, pos);
+
+                after.placeRaw(player.world, pos, blockData);
             }
         }
+        after.finalize(player.world);
+
         playerData.undoTape.push(before, after);
 
         return true;

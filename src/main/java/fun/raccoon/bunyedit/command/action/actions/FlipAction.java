@@ -51,9 +51,11 @@ public class FlipAction implements ISelectionAction {
             int[] posa = PosMath.toArray(pos);
             posa[axis.ordinal()] = side2 - (posa[axis.ordinal()] - side1);
             pos = PosMath.fromArray(posa);
-            after.put(pos, blockData);
-            blockData.place(player.world, pos);
+
+            after.placeRaw(player.world, pos, blockData);
         });
+        after.finalize(player.world);
+        
         playerData.undoTape.push(before, after);
 
         return true;

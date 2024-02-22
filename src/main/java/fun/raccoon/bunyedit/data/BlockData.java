@@ -16,17 +16,17 @@ public class BlockData {
     /**
      * Block ID.
      */
-    public int id;
+    public final int id;
 
     /**
      * Block metadata.
      */
-    public int meta;
+    public final int meta;
 
     /**
      * NBT data for a tile entity. null for regular blocks.
      */
-    public CompoundTag nbt;
+    public final CompoundTag nbt;
 
     /**
      * Air.
@@ -117,18 +117,5 @@ public class BlockData {
         int meta = world.getBlockMetadata(pos.x, pos.y, pos.z);
 
         return this.id == id && this.meta == meta;
-    }
-
-    /**
-     * Places a block matching this data into the world.
-     */
-    public void place(World world, ChunkPosition pos) {
-        world.setBlockAndMetadata(pos.x, pos.y, pos.z, this.id, this.meta);
-        if (this.nbt != null)
-            world.setBlockTileEntity(
-                pos.x, pos.y, pos.z,
-                TileEntity.createAndLoadEntity(this.nbt));
-
-        world.notifyBlockChange(pos.x, pos.y, pos.z, this.id);
     }
 }

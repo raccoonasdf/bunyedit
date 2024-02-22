@@ -64,9 +64,10 @@ public class SetAction implements ISelectionAction {
 
         stream.forEach(pos -> {
             BlockData blockData = pattern.apply(new BlockData(player.world, pos));
-            blockData.place(player.world, pos);
-            after.put(pos, blockData);
+            after.placeRaw(player.world, pos, blockData);
         });
+        after.finalize(player.world);
+        
         playerData.undoTape.push(before, after);
 
         return true;
