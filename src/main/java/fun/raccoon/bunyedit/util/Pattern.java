@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-import fun.raccoon.bunyedit.BunyEdit;
 import fun.raccoon.bunyedit.data.BlockData;
 import net.minecraft.core.util.collection.Pair;
 
@@ -26,8 +25,6 @@ public class Pattern {
         for (String patternString : patternStrings) {
             String[] weightPatternParts = patternString.split("\\*");
 
-            BunyEdit.LOGGER.info(String.format("len %s", weightPatternParts.length));
-
             int weight;
             String patternStr;
             switch (weightPatternParts.length) {
@@ -47,8 +44,6 @@ public class Pattern {
                     return null;
             }
 
-            BunyEdit.LOGGER.info(String.format("%s %s", weight, patternStr));
-
             totalWeight += weight;
 
             Function<BlockData, BlockData> subPattern = subPattern(patternStr);
@@ -66,7 +61,6 @@ public class Pattern {
                 if (rand <= 0)
                     return pair.getRight().apply(blockData);
             }
-            BunyEdit.LOGGER.info("wah!!!");
             return null;
         };
     }
