@@ -1,5 +1,5 @@
-0.4.0 [in progress]
--------------------
+0.4.0
+-----
 - Blocks are no longer notified of newly placed neighbor blocks until
   the entire buffer is done being placed
 - `onBlockRemoved` and `onBlockAdded` events are no longer triggered
