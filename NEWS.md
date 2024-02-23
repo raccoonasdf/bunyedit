@@ -1,3 +1,8 @@
+0.4.1
+-----
+- Fixed `//growsel` local directions (`F|B|L|R`) (B and R had the wrong
+  orientation and were the same as F and L)
+
 0.4.0
 -----
 - Blocks are no longer notified of newly placed neighbor blocks until

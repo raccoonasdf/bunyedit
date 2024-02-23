@@ -60,9 +60,9 @@ public class GrowSelAction implements ISelectionAction {
             if (direction == null) {
                 switch (directionStr) {
                     case "F": direction = heading.globalDir(LookAxis.SURGE); break;
-                    case "B": direction = heading.globalDir(LookAxis.SURGE); break;
+                    case "B": direction = heading.globalDir(LookAxis.SURGE).getOpposite(); break;
                     case "L": direction = heading.globalDir(LookAxis.SWAY); break;
-                    case "R": direction = heading.globalDir(LookAxis.SWAY); break;
+                    case "R": direction = heading.globalDir(LookAxis.SWAY).getOpposite(); break;
                     case "*": direction = Direction.NONE; break;
                     default:
                         throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidgrowdir"));
