@@ -19,6 +19,9 @@ bunyedit.cmd.err.invalidnumber=invalid number!
 bunyedit.cmd.err.invalidfilter=invalid filter format!
 bunyedit.cmd.err.insufficientperms=insufficient permissions!
 bunyedit.cmd.err.invalidgrowdir=invalid grow direction!
+bunyedit.cmd.err.ambiguouskey=ambiguous key "%s"
+bunyedit.cmd.err.ambiguouskey.remap=was remapped to "%s"!
+bunyedit.cmd.err.ambiguouskey.try=try appending: %s
 
 bunyedit.cmd.copy.success=copied!
 

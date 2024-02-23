@@ -1,7 +1,5 @@
 package fun.raccoon.bunyedit.data;
 
-import java.util.Arrays;
-
 import com.mojang.nbt.CompoundTag;
 
 import net.minecraft.core.block.Block;
@@ -66,47 +64,6 @@ public class BlockData {
 
     public BlockData(World world, ChunkPosition pos) {
         this(world, pos.x, pos.y, pos.z);
-    }
-
-    /**
-     * From string of the form "<key>:<meta>"
-     */
-    public static BlockData fromString(String string) {
-        String[] parts = string.split(":");
-        if (parts.length > 2)
-            return null;
-
-        String key = parts[0];
-
-        int id;
-        int meta = 0;
-
-        if (key.equals("air"))
-            return new BlockData(0, 0, null);
-
-        try {
-            id = Integer.parseInt(parts[0]);
-        } catch (NumberFormatException e) {
-            Block block = Arrays.stream(Block.blocksList)
-                .filter(b -> b != null && b.getKey().equalsIgnoreCase("tile." + key))
-                .findAny()
-                .orElse(null);
-            
-            if (block == null)
-                return null;
-            
-            id = block.id;
-        }
-
-        if (parts.length == 2) {
-            try {
-                meta = Integer.parseInt(parts[1]);
-            } catch (NumberFormatException e) {
-                return null;
-            }
-        }
-        
-        return new BlockData(id, meta, null);
     }
 
     /**

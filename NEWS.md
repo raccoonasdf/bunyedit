@@ -1,3 +1,11 @@
+0.5.0 [in progress]
+-----
+- Added disambiguation for block patterns (if you type `water`, you will
+  be warned in chat but the command will continue as if you typed
+  `fluid.water.still`; if you type `sponge`, the command will error out
+  and you will receive the suggestion to append either `.dry` or `.wet`;
+  etc.)
+
 0.4.1
 -----
 - Fixed `//growsel` local directions (`F|B|L|R`) (B and R had the wrong

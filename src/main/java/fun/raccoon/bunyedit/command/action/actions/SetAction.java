@@ -40,7 +40,7 @@ public class SetAction implements ISelectionAction {
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         }
 
-        Function<BlockData, BlockData> pattern = Pattern.fromString(patternStr);
+        Function<BlockData, BlockData> pattern = Pattern.fromString(sender, patternStr);
         if (pattern == null)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidpattern"));
 
