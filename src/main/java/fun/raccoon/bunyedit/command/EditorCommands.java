@@ -38,7 +38,7 @@ public class EditorCommands {
         LIST.add(
             new EditorCommandBuilder("growsel")
                 .usage("[grow]")
-                .action(new GrowSelAction())
+                .action(new GrowSelectionAction())
                 .build()
         );
         LIST.add(

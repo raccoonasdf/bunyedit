@@ -12,7 +12,7 @@ import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.util.collection.Pair;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
-public class GrowSelAction implements ISelectionAction {
+public class GrowSelectionAction implements ISelectionAction {
     public boolean apply(
         I18n i18n, CommandSender sender, EntityPlayer player,
         PlayerData playerData, Selection selection, String[] argv
