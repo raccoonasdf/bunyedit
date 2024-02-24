@@ -37,7 +37,7 @@ public class EditorCommands {
         );
         LIST.add(
             new EditorCommandBuilder("growsel")
-                .usage("[grow]")
+                .usage("[bound=*1]")
                 .action(new GrowSelectionAction())
                 .build()
         );
