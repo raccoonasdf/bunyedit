@@ -34,7 +34,9 @@ public class Bound {
                 if (Character.isLetter(c) || c == '*') {
                     String cStr = Character.toString(c).toUpperCase();
                     Direction direction = DirectionHelper.fromAbbrev(cStr);
-                    if (direction == null) {
+                    if (direction != null) {
+                        directions.add(direction);
+                    } else {
                         switch (cStr) {
                             case "F":
                                 directions.add(heading.globalDir(LookAxis.SURGE));
