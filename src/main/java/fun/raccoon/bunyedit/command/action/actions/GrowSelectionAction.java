@@ -4,7 +4,6 @@ import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.util.Bound;
-import fun.raccoon.bunyedit.util.PosMath;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -31,10 +30,7 @@ public class GrowSelectionAction implements ISelectionAction {
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         }
 
-        selection.setPrimary(
-            player.world, PosMath.add(selection.getPrimary(), growBy.getLeft()));
-        selection.setSecondary(
-            player.world, PosMath.add(selection.getSecondary(), growBy.getRight()));
+        selection.setBound(growBy);
 
         return true;
     }

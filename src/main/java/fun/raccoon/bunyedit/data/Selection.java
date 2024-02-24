@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import fun.raccoon.bunyedit.util.PosMath;
+import net.minecraft.core.util.collection.Pair;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
@@ -155,5 +156,12 @@ public class Selection {
         });
 
         return page;
+    }
+
+    public void setBound(Pair<ChunkPosition, ChunkPosition> bound) {
+        this.setPrimary(this.world,
+            PosMath.add(this.getPrimary(), bound.getLeft()));
+        this.setSecondary(this.world,
+            PosMath.add(this.getSecondary(), bound.getRight()));
     }
 }
