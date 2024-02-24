@@ -37,6 +37,8 @@ public class PlayerData {
      */
     public Selection selection = new Selection();
 
+    public @Nullable Long selectionLimit = 131072L;
+
     /**
      * World time of last cursor interaction, for debouncing purposes.
      * This seems to be necessary in multiplayer, as `swingItem` is forced

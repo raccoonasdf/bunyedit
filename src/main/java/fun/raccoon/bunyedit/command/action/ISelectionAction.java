@@ -18,6 +18,12 @@ public interface ISelectionAction extends IPlayerAction {
         if (selection == null || !playerData.selection.getWorld().equals(player.world))
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.incompleteselection"));
 
+        Long limit = playerData.selectionLimit;
+        if (limit != null) {
+            long vol = selection.coordStream().count();
+            if (vol > limit)
+                throw new CommandError(i18n.translateKeyAndFormat("bunyedit.cmd.err.selectiontoolarge", vol));
+        }
         return apply(i18n, sender, player, playerData, selection, argv);
     }
 }

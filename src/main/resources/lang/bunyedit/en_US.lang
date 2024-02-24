@@ -21,6 +21,7 @@ bunyedit.cmd.err.invalidbound=invalid bound!
 bunyedit.cmd.err.ambiguouskey=ambiguous key "%s"
 bunyedit.cmd.err.ambiguouskey.remap=was remapped to "%s"!
 bunyedit.cmd.err.ambiguouskey.try=try appending: %s
+bunyedit.cmd.err.selectiontoolarge=your selection exceeds the limit (it's %s blocks in volume)! if this wasn't a mistake, use `//limit [int|no]` to change the limit.
 
 bunyedit.cmd.copy.success=copied!
 
@@ -28,6 +29,9 @@ bunyedit.cmd.flip.help.1=axis is one of X,Y,Z or ^ (look axis)
 
 bunyedit.cmd.setsel.help.1=prefix ~ for player-relative coordinates
 bunyedit.cmd.setsel.help.2=if no coordinates are supplied, ~,~,~ implied
+
+bunyedit.cmd.limit.print=%s blocks
+bunyedit.cmd.limit.success=limit set!
 
 bunyedit.cmd.mask.current=current mask
 bunyedit.cmd.mask.list.header=available masks

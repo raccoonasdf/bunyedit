@@ -1,3 +1,9 @@
+0.7.0 [in progress]
+-----
+- Added selection limits. If your selection exceeds a certain volume
+  (131072 by default), commands involving it will fail. You can use
+  `//limit [int|no]` to change the limit
+
 0.6.0
 -----
 - Fixed `//selection` output

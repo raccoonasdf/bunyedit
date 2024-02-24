@@ -48,6 +48,12 @@ public class EditorCommands {
                 .build()
         );
         LIST.add(
+            new EditorCommandBuilder("limit")
+                .usage("[int|no]")
+                .action(new LimitAction())
+                .build()
+        );
+        LIST.add(
             new EditorCommandBuilder("move")
                 .usage("<x>,<y>,<z>")
                 .action(new MoveAction())
