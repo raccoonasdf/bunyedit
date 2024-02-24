@@ -27,8 +27,6 @@ bunyedit.cmd.copy.success=copied!
 
 bunyedit.cmd.flip.help.1=axis is one of X,Y,Z or ^ (look axis)
 
-bunyedit.cmd.set.err.nopattern=no pattern provided
-
 bunyedit.cmd.setsel.help.1=prefix ~ for player-relative coordinates
 bunyedit.cmd.setsel.help.2=if no coordinates are supplied, ~,~,~ implied
 

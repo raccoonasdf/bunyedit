@@ -27,7 +27,7 @@ public class SetAction implements ISelectionAction {
         String filterStr;
         switch (argv.length) {
             case 0:
-                throw new CommandError(i18n.translateKey("bunyedit.cmd.set.err.nopattern"));
+                throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toofewargs"));
             case 1:
                 filterStr = null;
                 patternStr = argv[0];
