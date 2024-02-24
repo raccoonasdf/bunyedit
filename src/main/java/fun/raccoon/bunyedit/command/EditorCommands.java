@@ -23,6 +23,12 @@ public class EditorCommands {
                 .build()
         );
         LIST.add(
+            new EditorCommandBuilder("fill")
+                .usage("<filter> <pattern> [bound=*16]")
+                .action(new FillAction())
+                .build()
+        );
+        LIST.add(
             new EditorCommandBuilder("flip")
                 .usage("[axis]")
                 .help("bunyedit.cmd.flip.help.1")

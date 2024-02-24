@@ -9,6 +9,7 @@
   magnitude is 0 instead of 1 (`*` does nothing, `*1` grows by 1 in all
   directions), and specifying the same direction more than once
   overwrites rather than adds
+- Added `//fill <filter> <pattern> [bound=*16]`
 
 0.4.1
 -----

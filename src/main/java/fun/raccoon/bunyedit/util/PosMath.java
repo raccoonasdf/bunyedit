@@ -27,6 +27,22 @@ public class PosMath {
             f.apply(a.z));
     }
 
+    public static ChunkPosition min(ChunkPosition a, ChunkPosition b) {
+        return mapPositions((x, y) -> Math.min(x, y), a, b);
+    }
+
+    public static ChunkPosition max(ChunkPosition a, ChunkPosition b) {
+        return mapPositions((x, y) -> Math.max(x, y), a, b);
+    }
+
+    public static boolean inside(ChunkPosition s1, ChunkPosition s2, ChunkPosition a) {
+        ChunkPosition min = PosMath.min(s1, s2);
+        ChunkPosition max = PosMath.max(s1, s2);
+        return a.x >= min.x && a.x <= max.x
+            && a.y >= min.y && a.y <= max.y
+            && a.z >= min.z && a.z <= max.z;
+    }
+
     public static ChunkPosition add(ChunkPosition a, ChunkPosition b) {
         return mapPositions(((x, y) -> x + y), a, b);
     }
