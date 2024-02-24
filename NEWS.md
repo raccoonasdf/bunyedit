@@ -1,4 +1,4 @@
-0.5.0 [in progress]
+0.5.0
 -----
 - Added disambiguation for block patterns (if you type `water`, you will
   be warned in chat but the command will continue as if you typed
