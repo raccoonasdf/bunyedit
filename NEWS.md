@@ -1,3 +1,8 @@
+0.5.1
+-----
+- Fixed crash when trying to use the cursor to select a block that's out
+  of range
+
 0.5.0
 -----
 - Added disambiguation for block patterns (if you type `water`, you will

@@ -2,7 +2,7 @@ bunyedit.selection=selection
 bunyedit.selection.primary=primary
 bunyedit.selection.secondary=secondary
 
-bunyedit.cursor.outofrange=no tile in range
+bunyedit.cursor.outofrange=no tile in range!
 bunyedit.cursor.select=%s at %s
 
 bunyedit.cmd.err.notaplayer=sender is not a player!

@@ -103,9 +103,9 @@ public class Cursor {
             direction.yCoord * TRACE_DISTANCE,
             direction.zCoord * TRACE_DISTANCE);
         HitResult hit = world.checkBlockCollisionBetweenPoints(start, end);
-        ChunkPosition pos = new ChunkPosition(hit.x, hit.y, hit.z);
 
         if (hit != null && hit.hitType.equals(HitType.TILE)) {
+            ChunkPosition pos = new ChunkPosition(hit.x, hit.y, hit.z);
             playerData.selection.set(slot, world, pos);
 
             sendMessage(player, ChatString.gen_select_action(slot, world, pos));
