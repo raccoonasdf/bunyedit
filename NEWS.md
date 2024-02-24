@@ -5,6 +5,10 @@
   `fluid.water.still`; if you type `sponge`, the command will error out
   and you will receive the suggestion to append either `.dry` or `.wet`;
   etc.)
+- `bound` argument (as for `//growsel`) given new semantics: default
+  magnitude is 0 instead of 1 (`*` does nothing, `*1` grows by 1 in all
+  directions), and specifying the same direction more than once
+  overwrites rather than adds
 
 0.4.1
 -----
