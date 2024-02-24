@@ -84,7 +84,7 @@ public class Pattern {
                     Block block_ = blocks.get(0);
                     String key__ = block_.getKey().substring(5);
                     id = block_.id;
-                    if (key__ != origKey) {
+                    if (!key__.equals(origKey)) {
                         sender.sendMessage(
                             TextFormatting.formatted(
                                 String.format("%s %s",
