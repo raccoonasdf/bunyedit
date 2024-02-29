@@ -19,7 +19,7 @@ my own take on it. thank you to the author of that for inspiration!
 this is not a fork of either worldedit or bta-worldedit, but i have read bits of their
 code.
 
-## Summary of features
+## summary of features
 
 - Cursor tool that can select blocks from long distances using left and right click!
 - Command-based selection manipulation! (relative moving, growing, shrinking)
