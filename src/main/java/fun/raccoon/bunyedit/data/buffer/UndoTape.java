@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
  * without losing history as long as the tape isn't edited in the meantime.
  */
 public class UndoTape {
-    private List<BlockBuffer[]> pages = new ArrayList<>();
+    private List<UndoPage> pages = new ArrayList<>();
     private int head = -1;
 
     /**
@@ -23,34 +23,34 @@ public class UndoTape {
      */
     public void push(@Nonnull BlockBuffer before, @Nonnull BlockBuffer after) {
         pages.subList(head + 1, pages.size()).clear();
-        pages.add(new BlockBuffer[]{before, after});
+        pages.add(UndoPage.of(WorldBuffer.of(before, null), WorldBuffer.of(after, null)));
         head += 1;
     }
 
     /**
-     * @return a {@link BlockBuffer} that can be used to undo the most recent
+     * @return a {@link WorldBuffer} that can be used to undo the most recent
      * action.
      */
-    public @Nullable BlockBuffer undo() {
+    public @Nullable WorldBuffer undo() {
         if (head <= -1)
             return null;
         
-        BlockBuffer page = pages.get(head)[0];
+        WorldBuffer page = pages.get(head).getLeft();
         head -= 1;
 
         return page;
     }
 
     /**
-     * @return a {@link BlockBuffer} that can be used to redo the action that
+     * @return a {@link WorldBuffer} that can be used to redo the action that
      * was most recently undone.
      */
-    public @Nullable BlockBuffer redo() {
+    public @Nullable WorldBuffer redo() {
         if (head + 1 >= pages.size())
             return null;
         
         head += 1;
-        BlockBuffer page = pages.get(head)[1];
+        WorldBuffer page = pages.get(head).getRight();
 
         return page;
     }

@@ -6,6 +6,7 @@ import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
 import fun.raccoon.bunyedit.data.buffer.UndoTape;
+import fun.raccoon.bunyedit.data.buffer.WorldBuffer;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -28,7 +29,7 @@ public class UndoRedoAction implements IPlayerAction {
         PlayerData playerData, String[] argv
     ) {
         UndoTape undoTape = playerData.getUndoTape(player.world);
-        BlockBuffer page = this.which.equals(Which.UNDO)
+        WorldBuffer page = this.which.equals(Which.UNDO)
             ? undoTape.undo()
             : undoTape.redo();
 
@@ -41,7 +42,7 @@ public class UndoRedoAction implements IPlayerAction {
         }
 
         BlockBuffer after = new BlockBuffer();
-        page.forEach((pos, blockData) -> {
+        page.getLeft().forEach((pos, blockData) -> {
             after.placeRaw(player.world, pos, blockData);
         });
         after.finalize(player.world);
