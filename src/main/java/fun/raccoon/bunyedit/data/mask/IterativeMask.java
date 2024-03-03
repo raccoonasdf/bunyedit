@@ -16,7 +16,7 @@ public abstract class IterativeMask implements BiPredicate<ValidSelection, Chunk
     public abstract void fillCache(HashSet<ChunkPosition> cache, ValidSelection selection);
 
     public boolean test(ValidSelection selection, ChunkPosition pos) {
-        if (cachedSelection == null || !cachedSelection.equals(selection)) {
+        if (cachedSelection != selection) {
             cachedSelection = selection;
             cachedResponse = new HashSet<>();
             this.fillCache(cachedResponse, selection);
