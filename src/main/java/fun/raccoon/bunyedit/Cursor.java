@@ -26,12 +26,9 @@ import net.minecraft.server.entity.player.EntityPlayerMP;
  */
 public class Cursor {
     /** 
-     * from serverside's perspective, entity view vectors are stepped to fit into a byte
-     * <p>
-     * this causes some annoying imprecision if you try to select from extreme distances
-     * so, prefer just limiting the range outright
+     * maximum distance from the player that blocks can be selected from
      */
-    private static final int TRACE_DISTANCE = 50;
+    private static final int TRACE_DISTANCE = 256;
 
     /**
      * default item used for the cursor, deliberately chosen to be reasonably unique

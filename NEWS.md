@@ -3,6 +3,7 @@
 - Fixed `//selection` output
 - A selection that exists in a different world from the player's current world is now considered invalid
 - Players now have a seperate undo buffer for each world they edit in
+- Adjusted max cursor range to something more reasonable (50 -> 256)
 
 0.5.1
 -----
