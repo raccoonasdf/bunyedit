@@ -12,7 +12,7 @@ import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.data.ValidSelection;
 import fun.raccoon.bunyedit.util.Bound;
 import fun.raccoon.bunyedit.util.Filter;
 import fun.raccoon.bunyedit.util.Pattern;
@@ -51,7 +51,7 @@ public class FillAction implements ISelectionAction {
 
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, Selection selection, String[] argv
+        PlayerData playerData, ValidSelection selection, String[] argv
     ) {
         if (argv.length < 2)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toofewargs"));

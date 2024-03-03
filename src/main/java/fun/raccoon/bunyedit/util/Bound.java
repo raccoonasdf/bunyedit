@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 
 import fun.raccoon.bunyedit.data.LookAxis;
 import fun.raccoon.bunyedit.data.LookDirection;
-import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.data.ValidSelection;
 import fun.raccoon.bunyedit.data.Selection.Slot;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.util.collection.Pair;
@@ -27,7 +27,7 @@ public class Bound {
      * @throws NullPointerException if selection is not valid.
      */
     public static @Nullable Pair<ChunkPosition, ChunkPosition> fromString(
-        Selection selection,
+        ValidSelection selection,
         @Nonnull EntityPlayer player,
         String boundStr)
     {

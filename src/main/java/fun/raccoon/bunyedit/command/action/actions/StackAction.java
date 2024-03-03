@@ -9,7 +9,7 @@ import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.LookDirection;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.data.ValidSelection;
 import fun.raccoon.bunyedit.util.DirectionHelper;
 import fun.raccoon.bunyedit.util.PosMath;
 import fun.raccoon.bunyedit.util.RelCoords;
@@ -23,7 +23,7 @@ import net.minecraft.core.world.chunk.ChunkPosition;
 public class StackAction implements ISelectionAction {
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, Selection selection, String[] argv
+        PlayerData playerData, ValidSelection selection, String[] argv
     ) {
         if (argv.length > 3)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));

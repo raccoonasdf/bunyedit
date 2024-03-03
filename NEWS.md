@@ -1,3 +1,7 @@
+0.6.0 [in progress]
+-----
+- Fixed `//selection` output
+
 0.5.1
 -----
 - Fixed crash when trying to use the cursor to select a block that's out

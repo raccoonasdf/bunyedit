@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.data.ValidSelection;
 import fun.raccoon.bunyedit.data.mask.IMaskCommand;
 import fun.raccoon.bunyedit.data.mask.Masks;
 import net.minecraft.core.entity.player.EntityPlayer;
@@ -58,7 +58,7 @@ public class SetMaskAction implements IPlayerAction {
             maskArgv = Arrays.copyOfRange(argv, 1, argv.length);
         }
 
-        BiPredicate<Selection, ChunkPosition> mask = maskCmd.build(maskArgv);
+        BiPredicate<ValidSelection, ChunkPosition> mask = maskCmd.build(maskArgv);
 
         playerData.selection.setMask(maskName+" "+Arrays.stream(maskArgv).collect(Collectors.joining(" ")), mask);
 
