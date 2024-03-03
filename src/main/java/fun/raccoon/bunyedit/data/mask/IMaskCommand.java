@@ -4,7 +4,7 @@ import java.util.function.BiPredicate;
 
 import javax.annotation.Nonnull;
 
-import fun.raccoon.bunyedit.data.ValidSelection;
+import fun.raccoon.bunyedit.data.selection.ValidSelection;
 import net.minecraft.core.net.command.CommandError;
 import net.minecraft.core.world.chunk.ChunkPosition;
 

@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.data;
+package fun.raccoon.bunyedit.data.look;
 
 import java.util.HashMap;
 import java.util.Map;

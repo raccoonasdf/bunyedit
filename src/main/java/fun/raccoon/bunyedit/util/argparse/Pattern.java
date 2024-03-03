@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.util;
+package fun.raccoon.bunyedit.util.argparse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
-import fun.raccoon.bunyedit.data.BlockData;
+import fun.raccoon.bunyedit.data.buffer.BlockData;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;

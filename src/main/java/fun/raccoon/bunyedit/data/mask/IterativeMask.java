@@ -3,7 +3,7 @@ package fun.raccoon.bunyedit.data.mask;
 import java.util.HashSet;
 import java.util.function.BiPredicate;
 
-import fun.raccoon.bunyedit.data.ValidSelection;
+import fun.raccoon.bunyedit.data.selection.ValidSelection;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 /**

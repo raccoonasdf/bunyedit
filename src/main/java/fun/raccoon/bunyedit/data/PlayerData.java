@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
+import fun.raccoon.bunyedit.data.buffer.UndoTape;
+import fun.raccoon.bunyedit.data.selection.Selection;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.world.World;
 

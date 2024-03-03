@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.util;
+package fun.raccoon.bunyedit.util.argparse;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,10 +8,12 @@ import java.util.Map.Entry;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import fun.raccoon.bunyedit.data.LookAxis;
-import fun.raccoon.bunyedit.data.LookDirection;
-import fun.raccoon.bunyedit.data.ValidSelection;
-import fun.raccoon.bunyedit.data.Selection.Slot;
+import fun.raccoon.bunyedit.data.look.LookAxis;
+import fun.raccoon.bunyedit.data.look.LookDirection;
+import fun.raccoon.bunyedit.data.selection.ValidSelection;
+import fun.raccoon.bunyedit.data.selection.Selection.Slot;
+import fun.raccoon.bunyedit.util.DirectionHelper;
+import fun.raccoon.bunyedit.util.PosMath;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.util.collection.Pair;
 import net.minecraft.core.util.helper.Direction;

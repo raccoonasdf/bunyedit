@@ -3,9 +3,9 @@ package fun.raccoon.bunyedit.util;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import fun.raccoon.bunyedit.data.BlockData;
-import fun.raccoon.bunyedit.data.Selection;
-import fun.raccoon.bunyedit.data.Selection.Slot;
+import fun.raccoon.bunyedit.data.buffer.BlockData;
+import fun.raccoon.bunyedit.data.selection.Selection;
+import fun.raccoon.bunyedit.data.selection.Selection.Slot;
 import net.minecraft.core.HitResult;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.lang.I18n;

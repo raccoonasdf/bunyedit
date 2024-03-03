@@ -4,9 +4,9 @@ import javax.annotation.Nonnull;
 
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.data.selection.Selection;
 import fun.raccoon.bunyedit.util.ChatString;
-import fun.raccoon.bunyedit.util.RelCoords;
+import fun.raccoon.bunyedit.util.argparse.RelCoords;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;

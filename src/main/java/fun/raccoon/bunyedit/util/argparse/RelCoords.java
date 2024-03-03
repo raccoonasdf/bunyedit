@@ -1,10 +1,11 @@
-package fun.raccoon.bunyedit.util;
+package fun.raccoon.bunyedit.util.argparse;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import fun.raccoon.bunyedit.data.LookAxis;
-import fun.raccoon.bunyedit.data.LookDirection;
+import fun.raccoon.bunyedit.data.look.LookAxis;
+import fun.raccoon.bunyedit.data.look.LookDirection;
+import fun.raccoon.bunyedit.util.PosMath;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.world.chunk.ChunkPosition;
 

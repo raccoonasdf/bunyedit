@@ -3,11 +3,11 @@ package fun.raccoon.bunyedit.command.action.actions;
 import javax.annotation.Nonnull;
 
 import fun.raccoon.bunyedit.command.action.ISelectionAction;
-import fun.raccoon.bunyedit.data.LookDirection;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.ValidSelection;
+import fun.raccoon.bunyedit.data.look.LookDirection;
+import fun.raccoon.bunyedit.data.selection.ValidSelection;
 import fun.raccoon.bunyedit.util.PosMath;
-import fun.raccoon.bunyedit.util.RelCoords;
+import fun.raccoon.bunyedit.util.argparse.RelCoords;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;

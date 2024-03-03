@@ -10,9 +10,9 @@ import javax.annotation.Nullable;
 
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.ValidSelection;
 import fun.raccoon.bunyedit.data.mask.IMaskCommand;
 import fun.raccoon.bunyedit.data.mask.Masks;
+import fun.raccoon.bunyedit.data.selection.ValidSelection;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;

@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 
 import fun.raccoon.bunyedit.command.action.ISelectionAction;
-import fun.raccoon.bunyedit.data.BlockBuffer;
-import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.ValidSelection;
-import fun.raccoon.bunyedit.util.Filter;
-import fun.raccoon.bunyedit.util.Pattern;
+import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
+import fun.raccoon.bunyedit.data.buffer.BlockData;
+import fun.raccoon.bunyedit.data.selection.ValidSelection;
+import fun.raccoon.bunyedit.util.argparse.Filter;
+import fun.raccoon.bunyedit.util.argparse.Pattern;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;

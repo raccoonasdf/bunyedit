@@ -1,6 +1,6 @@
 package fun.raccoon.bunyedit.util;
 
-import fun.raccoon.bunyedit.data.BlockData;
+import fun.raccoon.bunyedit.data.buffer.BlockData;
 import fun.raccoon.bunyedit.mixin.BlockSignAccessor;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockBed;

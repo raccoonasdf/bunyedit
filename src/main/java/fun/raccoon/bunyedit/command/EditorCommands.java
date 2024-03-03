@@ -5,7 +5,7 @@ import java.util.List;
 
 import fun.raccoon.bunyedit.command.action.actions.*;
 import fun.raccoon.bunyedit.command.action.actions.UndoRedoAction.Which;
-import fun.raccoon.bunyedit.data.Selection.Slot;
+import fun.raccoon.bunyedit.data.selection.Selection.Slot;
 
 public class EditorCommands {
     public static final List<EditorCommand> LIST = new ArrayList<>();

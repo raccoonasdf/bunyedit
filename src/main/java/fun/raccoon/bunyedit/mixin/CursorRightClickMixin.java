@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import fun.raccoon.bunyedit.Cursor;
-import fun.raccoon.bunyedit.data.Selection;
+import fun.raccoon.bunyedit.data.selection.Selection;
 import net.minecraft.client.entity.player.EntityClientPlayerMP;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;

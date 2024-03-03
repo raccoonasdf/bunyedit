@@ -2,8 +2,8 @@ package fun.raccoon.bunyedit.util;
 
 import javax.annotation.Nullable;
 
-import fun.raccoon.bunyedit.data.LookAxis;
-import fun.raccoon.bunyedit.data.LookDirection;
+import fun.raccoon.bunyedit.data.look.LookAxis;
+import fun.raccoon.bunyedit.data.look.LookDirection;
 import net.minecraft.core.util.helper.Axis;
 import net.minecraft.core.util.helper.Direction;
 

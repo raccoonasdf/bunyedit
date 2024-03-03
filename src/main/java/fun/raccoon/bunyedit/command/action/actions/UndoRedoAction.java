@@ -3,9 +3,9 @@ package fun.raccoon.bunyedit.command.action.actions;
 import javax.annotation.Nonnull;
 
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
-import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.PlayerData;
-import fun.raccoon.bunyedit.data.UndoTape;
+import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
+import fun.raccoon.bunyedit.data.buffer.UndoTape;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;

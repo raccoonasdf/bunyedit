@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.data;
+package fun.raccoon.bunyedit.data.buffer;
 
 import javax.annotation.Nullable;
 

@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.data;
+package fun.raccoon.bunyedit.data.selection;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -6,7 +6,9 @@ import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import fun.raccoon.bunyedit.data.Selection.Slot;
+import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
+import fun.raccoon.bunyedit.data.buffer.BlockData;
+import fun.raccoon.bunyedit.data.selection.Selection.Slot;
 import fun.raccoon.bunyedit.util.PosMath;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
