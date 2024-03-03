@@ -1,7 +1,8 @@
 0.6.0 [in progress]
 -----
 - Fixed `//selection` output
-- A selection that exists in a different world from the player's is now considered invalid
+- A selection that exists in a different world from the player's current world is now considered invalid
+- Players now have a seperate undo buffer for each world they edit in
 
 0.5.1
 -----

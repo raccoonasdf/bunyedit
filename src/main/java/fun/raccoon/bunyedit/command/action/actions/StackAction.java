@@ -81,7 +81,7 @@ public class StackAction implements ISelectionAction {
         }
         after.finalize(player.world);
 
-        playerData.undoTape.push(before, after);
+        playerData.getUndoTape(player.world).push(before, after);
 
         return true;
     }

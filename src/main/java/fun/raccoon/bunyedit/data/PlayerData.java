@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.world.World;
 
 /**
  * Edit-session data for an individual player.
@@ -43,7 +45,16 @@ public class PlayerData {
     /**
      * Undo history for this player's actions.
      */
-    public UndoTape undoTape = new UndoTape();
+    public Map<World, UndoTape> undoTapes = new HashMap<>();
+
+    public UndoTape getUndoTape(World world) {
+        @Nullable UndoTape undoTape = undoTapes.get(world);
+        if (undoTape == null) {
+            undoTape = new UndoTape();
+            undoTapes.put(world, undoTape);
+        }
+        return undoTape;
+    }
 
     /**
      * Buffer for //copy and //paste.
