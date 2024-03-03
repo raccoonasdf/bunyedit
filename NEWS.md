@@ -1,6 +1,7 @@
 0.6.0 [in progress]
 -----
 - Fixed `//selection` output
+- A selection that exists in a different world from the player's is now considered invalid
 
 0.5.1
 -----

@@ -15,7 +15,7 @@ public interface ISelectionAction extends IPlayerAction {
     @Override
     default public boolean apply(I18n i18n, CommandSender sender, @Nonnull EntityPlayer player, PlayerData playerData, String[] argv) {
         ValidSelection selection = ValidSelection.fromSelection(playerData.selection);
-        if (selection == null)
+        if (selection == null || !playerData.selection.getWorld().equals(player.world))
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.incompleteselection"));
 
         return apply(i18n, sender, player, playerData, selection, argv);
