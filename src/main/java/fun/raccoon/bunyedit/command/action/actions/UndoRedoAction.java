@@ -1,12 +1,14 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
+import fun.raccoon.bunyedit.data.buffer.EntityBuffer;
+import fun.raccoon.bunyedit.data.buffer.UndoPage;
 import fun.raccoon.bunyedit.data.buffer.UndoTape;
-import fun.raccoon.bunyedit.data.buffer.WorldBuffer;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -29,7 +31,7 @@ public class UndoRedoAction implements IPlayerAction {
         PlayerData playerData, String[] argv
     ) {
         UndoTape undoTape = playerData.getUndoTape(player.world);
-        WorldBuffer page = this.which.equals(Which.UNDO)
+        UndoPage page = this.which.equals(Which.UNDO)
             ? undoTape.undo()
             : undoTape.redo();
 
@@ -41,11 +43,20 @@ public class UndoRedoAction implements IPlayerAction {
                     : "bunyedit.cmd.undoredo.redo")));
         }
 
+        BlockBuffer newBlocks = page.getRight().getLeft();
+        @Nullable EntityBuffer oldEnts = page.getLeft().getRight();
+        @Nullable EntityBuffer newEnts = page.getRight().getRight();
+
         BlockBuffer after = new BlockBuffer();
-        page.getLeft().forEach((pos, blockData) -> {
+        newBlocks.forEach((pos, blockData) -> {
             after.placeRaw(player.world, pos, blockData);
         });
         after.finalize(player.world);
+
+        if (oldEnts != null)
+            oldEnts.destroyIn(player.world);
+        if (newEnts != null)
+            newEnts.createIn(player.world);
 
         return true;
     }

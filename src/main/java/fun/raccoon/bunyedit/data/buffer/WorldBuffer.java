@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.data.buffer;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.core.util.collection.Pair;
 
 public class WorldBuffer extends Pair<BlockBuffer, EntityBuffer> {
@@ -7,7 +9,7 @@ public class WorldBuffer extends Pair<BlockBuffer, EntityBuffer> {
         super(left, right);
     }
 
-    public static WorldBuffer of(BlockBuffer left, EntityBuffer right) {
+    public static @Nonnull WorldBuffer of(BlockBuffer left, EntityBuffer right) {
         return new WorldBuffer(left, right);
     }
 }

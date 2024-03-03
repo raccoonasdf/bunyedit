@@ -18,39 +18,44 @@ public class UndoTape {
     private List<UndoPage> pages = new ArrayList<>();
     private int head = -1;
 
+
+    public void push(@Nonnull BlockBuffer before, @Nonnull BlockBuffer after) {
+        this.push(WorldBuffer.of(before, null), WorldBuffer.of(after, null));
+    }
+
     /**
      * Pushes a new action to the tape, erasing any available {@link #redo}'s.
      */
-    public void push(@Nonnull BlockBuffer before, @Nonnull BlockBuffer after) {
+    public void push(@Nonnull WorldBuffer before, @Nonnull WorldBuffer after) {
         pages.subList(head + 1, pages.size()).clear();
-        pages.add(UndoPage.of(WorldBuffer.of(before, null), WorldBuffer.of(after, null)));
+        pages.add(UndoPage.of(before, after));
         head += 1;
     }
 
     /**
-     * @return a {@link WorldBuffer} that can be used to undo the most recent
+     * @return an {@link UndoPage} that can be used to undo the most recent
      * action.
      */
-    public @Nullable WorldBuffer undo() {
+    public @Nullable UndoPage undo() {
         if (head <= -1)
             return null;
         
-        WorldBuffer page = pages.get(head).getLeft();
+        UndoPage page = pages.get(head);
         head -= 1;
 
-        return page;
+        return UndoPage.of(page.getRight(), page.getLeft());
     }
 
     /**
-     * @return a {@link WorldBuffer} that can be used to redo the action that
+     * @return an {@link UndoPage} that can be used to redo the action that
      * was most recently undone.
      */
-    public @Nullable WorldBuffer redo() {
+    public @Nullable UndoPage redo() {
         if (head + 1 >= pages.size())
             return null;
         
         head += 1;
-        WorldBuffer page = pages.get(head).getRight();
+        UndoPage page = pages.get(head);
 
         return page;
     }

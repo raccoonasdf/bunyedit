@@ -1,6 +1,8 @@
 package fun.raccoon.bunyedit.data.buffer;
 
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.core.util.collection.Pair;
 
 public class UndoPage extends Pair<WorldBuffer, WorldBuffer> {
@@ -8,7 +10,7 @@ public class UndoPage extends Pair<WorldBuffer, WorldBuffer> {
         super(left, right);
     }
 
-    public static UndoPage of(WorldBuffer left, WorldBuffer right) {
+    public static @Nonnull UndoPage of(WorldBuffer left, WorldBuffer right) {
         return new UndoPage(left, right);
     }
 }
