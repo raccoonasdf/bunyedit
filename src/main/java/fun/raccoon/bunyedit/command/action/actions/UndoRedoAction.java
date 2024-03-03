@@ -1,7 +1,6 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
@@ -44,8 +43,8 @@ public class UndoRedoAction implements IPlayerAction {
         }
 
         BlockBuffer newBlocks = page.getRight().getLeft();
-        @Nullable EntityBuffer oldEnts = page.getLeft().getRight();
-        @Nullable EntityBuffer newEnts = page.getRight().getRight();
+        EntityBuffer oldEnts = page.getLeft().getRight();
+        EntityBuffer newEnts = page.getRight().getRight();
 
         BlockBuffer after = new BlockBuffer();
         newBlocks.forEach((pos, blockData) -> {
@@ -53,10 +52,8 @@ public class UndoRedoAction implements IPlayerAction {
         });
         after.finalize(player.world);
 
-        if (oldEnts != null)
-            oldEnts.destroyIn(player.world);
-        if (newEnts != null)
-            newEnts.createIn(player.world);
+        oldEnts.destroyIn(player.world);
+        newEnts.createIn(player.world);
 
         return true;
     }

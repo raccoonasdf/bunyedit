@@ -1,5 +1,6 @@
 package fun.raccoon.bunyedit.data.buffer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mojang.nbt.CompoundTag;
@@ -13,7 +14,7 @@ import net.minecraft.core.world.World;
  * Buffer of entities that may or may not exist in the world.
  */
 public class EntityBuffer {
-    private List<Pair<Entity, CompoundTag>> buffer;
+    private List<Pair<Entity, CompoundTag>> buffer = new ArrayList<>();
 
     public void createIn(World world) {
         buffer.forEach(p -> {
