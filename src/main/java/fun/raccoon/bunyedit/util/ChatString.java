@@ -1,5 +1,8 @@
 package fun.raccoon.bunyedit.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import fun.raccoon.bunyedit.data.BlockData;
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.data.Selection.Slot;
@@ -19,15 +22,17 @@ public class ChatString {
         return TextFormatting.formatted(repr, TextFormatting.LIGHT_BLUE);
     }
 
-    public static String gen(ChunkPosition pos) {
+    public static String gen(@Nullable ChunkPosition pos) {
+        if (pos == null)
+            return "[unset]";
         return ChatString.gen_coord(pos.x, pos.y, pos.z);
     }
 
-    public static String gen(HitResult hit) {
+    public static String gen(@Nonnull HitResult hit) {
         return ChatString.gen_coord(hit.x, hit.y, hit.z);
     }
 
-    public static String gen(BlockData blockData) {
+    public static String gen(@Nonnull BlockData blockData) {
         String repr;
         if (blockData.id == 0) {
             repr = "air";

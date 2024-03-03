@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
@@ -19,7 +21,7 @@ public class SetSelectionAction implements IPlayerAction {
     }
 
     public boolean apply(
-        I18n i18n, CommandSender sender, EntityPlayer player,
+        I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
         PlayerData playerData, String[] argv
     ) {
         ChunkPosition pos;

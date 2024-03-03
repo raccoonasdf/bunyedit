@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
@@ -11,7 +13,7 @@ import net.minecraft.core.net.command.CommandSender;
 
 public class GetSelectionAction implements ISelectionAction {
     public boolean apply(
-        I18n i18n, CommandSender sender, EntityPlayer player,
+        I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
         PlayerData playerData, Selection selection, String[] argv
     ) {
         if (argv.length > 0)

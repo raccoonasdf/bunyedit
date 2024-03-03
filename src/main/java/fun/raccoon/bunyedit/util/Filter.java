@@ -8,6 +8,9 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicates;
 
 import fun.raccoon.bunyedit.data.BlockData;
@@ -17,15 +20,16 @@ import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.material.MaterialColor;
 
 public class Filter {
-    private static Predicate<BlockData> join(List<Predicate<BlockData>> predicates) {
-        Optional<Predicate<BlockData>> maybePredicate = predicates.stream().reduce((p, q) -> p.or(q));
-        if (!maybePredicate.isPresent())
-            return null;
+    private static @Nonnull Predicate<BlockData> join(@Nonnull List<Predicate<BlockData>> predicates) {
+        @Nullable Predicate<BlockData> predicate = predicates.stream().reduce((p, q) -> p.or(q)).get();
+
+        if (predicate == null)
+            return b -> false;
         
-        return maybePredicate.get();
+        return predicate;
     }
 
-private static Predicate<Integer> range(String rangeStr) {
+    private static @Nullable Predicate<Integer> range(String rangeStr) {
         String[] rangeStrSplit = rangeStr.split("\\.\\.");
 
         String fromStr;
@@ -79,7 +83,7 @@ private static Predicate<Integer> range(String rangeStr) {
         }
     }
 
-    private static Predicate<BlockData> materialFilter(String materialFilterStr) {
+    private static @Nullable Predicate<BlockData> materialFilter(String materialFilterStr) {
         // ugh
         Material material;
         Predicate<Block> p = null;
@@ -126,7 +130,7 @@ private static Predicate<Integer> range(String rangeStr) {
         };
     }
 
-    private static Predicate<Integer> blockMetas(String blockMetasStr) {
+    private static @Nullable Predicate<Integer> blockMetas(String blockMetasStr) {
         if (blockMetasStr.equals("*"))
             return Predicates.alwaysTrue();
 
@@ -142,7 +146,7 @@ private static Predicate<Integer> range(String rangeStr) {
         }
     }
 
-    private static Predicate<Integer> blockIds(String blockIdsStr) {
+    private static @Nullable Predicate<Integer> blockIds(String blockIdsStr) {
         if (blockIdsStr.equals("air"))
             return n -> n == 0;
         
@@ -191,7 +195,7 @@ private static Predicate<Integer> range(String rangeStr) {
         }
     }
 
-    public static Predicate<BlockData> blockFilter(String blockFilterStr) {
+    public static @Nullable Predicate<BlockData> blockFilter(String blockFilterStr) {
         String[] parts = blockFilterStr.split(":");
         if (parts.length > 2)
             return null;
@@ -212,7 +216,7 @@ private static Predicate<Integer> range(String rangeStr) {
         return blockData -> ids.test(blockData.id) && metas.test(blockData.meta);
     }
 
-    public static Predicate<BlockData> fromString(String filterArg) {
+    public static @Nullable Predicate<BlockData> fromString(String filterArg) {
         List<Predicate<BlockData>> predicates = new ArrayList<>();
         String[] filterStrings = filterArg.split("/");
 

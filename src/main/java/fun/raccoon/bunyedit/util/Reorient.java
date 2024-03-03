@@ -23,6 +23,12 @@ import net.minecraft.core.block.piston.BlockPistonHead;
 import net.minecraft.core.util.helper.Axis;
 
 public class Reorient {
+    /**
+     * @param blockData block to flip
+     * @param axis axis to mirror along
+     * @return
+     * @throws NullPointerException if blockData is null
+     */
     public static BlockData flipped(BlockData blockData, Axis axis) {
         Block block = Block.getBlock(blockData.id);
         int meta = blockData.meta;
@@ -109,7 +115,6 @@ public class Reorient {
                 if (axis.equals(Axis.Z) && (meta&4)==0)
                     meta ^= 1;
             }
-        } else if (block instanceof BlockPumpkin) {
         } else {
             return blockData;
         }

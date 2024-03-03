@@ -9,6 +9,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.annotation.Nullable;
+
 import fun.raccoon.bunyedit.data.BlockData;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.lang.I18n;
@@ -18,7 +20,7 @@ import net.minecraft.core.net.command.TextFormatting;
 import net.minecraft.core.util.collection.Pair;
 
 public class Pattern {
-    private static BlockData blockDataFromString(CommandSender sender, String patternStr)
+    private static @Nullable BlockData blockDataFromString(CommandSender sender, String patternStr)
         throws CommandError
     {
         I18n i18n = I18n.getInstance();
@@ -117,7 +119,7 @@ public class Pattern {
         return new BlockData(id, meta, null);
     }
 
-    private static Function<BlockData, BlockData> subPattern(CommandSender sender, String patternStr)
+    private static @Nullable Function<BlockData, BlockData> subPattern(CommandSender sender, String patternStr)
         throws CommandError
     {
         BlockData blockData_ = blockDataFromString(sender, patternStr);
@@ -126,7 +128,7 @@ public class Pattern {
         return blockData -> blockData_;
     }
 
-    public static Function<BlockData, BlockData> fromString(CommandSender sender, String patternArg) {
+    public static @Nullable Function<BlockData, BlockData> fromString(CommandSender sender, String patternArg) {
         List<Pair<Integer, Function<BlockData, BlockData>>> subPatterns = new ArrayList<>();
         String[] patternStrings = patternArg.split("/");
 

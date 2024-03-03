@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.data;
 
+import javax.annotation.Nullable;
+
 import com.mojang.nbt.CompoundTag;
 
 import net.minecraft.core.block.Block;
@@ -24,7 +26,7 @@ public class BlockData {
     /**
      * NBT data for a tile entity. null for regular blocks.
      */
-    public final CompoundTag nbt;
+    public final @Nullable CompoundTag nbt;
 
     /**
      * Air.

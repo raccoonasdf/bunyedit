@@ -3,6 +3,9 @@ package fun.raccoon.bunyedit.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * A sequence of {@link BlockBuffer} pairs each representing the state of a
  * region before and after an action was performed.
@@ -18,7 +21,7 @@ public class UndoTape {
     /**
      * Pushes a new action to the tape, erasing any available {@link #redo}'s.
      */
-    public void push(BlockBuffer before, BlockBuffer after) {
+    public void push(@Nonnull BlockBuffer before, @Nonnull BlockBuffer after) {
         pages.subList(head + 1, pages.size()).clear();
         pages.add(new BlockBuffer[]{before, after});
         head += 1;
@@ -28,7 +31,7 @@ public class UndoTape {
      * @return a {@link BlockBuffer} that can be used to undo the most recent
      * action.
      */
-    public BlockBuffer undo() {
+    public @Nullable BlockBuffer undo() {
         if (head <= -1)
             return null;
         
@@ -42,7 +45,7 @@ public class UndoTape {
      * @return a {@link BlockBuffer} that can be used to redo the action that
      * was most recently undone.
      */
-    public BlockBuffer redo() {
+    public @Nullable BlockBuffer redo() {
         if (head + 1 >= pages.size())
             return null;
         

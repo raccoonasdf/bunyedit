@@ -9,7 +9,6 @@ bunyedit.cmd.err.notaplayer=sender is not a player!
 bunyedit.cmd.err.toomanyargs=too many arguments!
 bunyedit.cmd.err.toofewargs=too few arguments!
 bunyedit.cmd.err.invalidhollow=invalid hollow argument!
-bunyedit.cmd.err.buildmaskfailed=failed to create mask!
 bunyedit.cmd.err.invalidpattern=invalid pattern!
 bunyedit.cmd.err.invalidcoords=invalid coordinates format!
 bunyedit.cmd.err.incompleteselection=incomplete selection!

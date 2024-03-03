@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.Cursor;
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.PlayerData;
@@ -10,7 +12,7 @@ import net.minecraft.core.net.command.CommandSender;
 
 public class CursorAction implements IPlayerAction {
     public boolean apply(
-        I18n i18n, CommandSender sender, EntityPlayer player,
+        I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
         PlayerData playerData, String[] argv
     ) {
         if (argv.length > 0)

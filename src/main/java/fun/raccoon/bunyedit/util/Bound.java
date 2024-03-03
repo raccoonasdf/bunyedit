@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import fun.raccoon.bunyedit.data.LookAxis;
 import fun.raccoon.bunyedit.data.LookDirection;
 import fun.raccoon.bunyedit.data.Selection;
@@ -15,9 +18,17 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class Bound {
-    public static Pair<ChunkPosition, ChunkPosition> fromString(
+    /**
+     * Parses a bound argument.
+     * @param selection selection to offset
+     * @param player player to use for look-relative directions
+     * @param boundStr string to parse
+     * @return Pair of ChunkPositions representing the offset from the given selection
+     * @throws NullPointerException if selection is not valid.
+     */
+    public static @Nullable Pair<ChunkPosition, ChunkPosition> fromString(
         Selection selection,
-        EntityPlayer player,
+        @Nonnull EntityPlayer player,
         String boundStr)
     {
         LookDirection heading = new LookDirection(player.yRot);

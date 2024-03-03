@@ -18,7 +18,7 @@ public abstract class CursorRightClickMixin {
     @Inject(method = "onItemRightClick", at = @At("TAIL"))
     private void onItemRightClickCheckCursor(ItemStack itemstack, World world, EntityPlayer entityplayer, CallbackInfoReturnable<ItemStack> cir) {
         // serverside has this covered in multiplayer
-        if (!(entityplayer instanceof EntityClientPlayerMP)
+        if (entityplayer != null && !(entityplayer instanceof EntityClientPlayerMP)
                 && Cursor.isCursorItem(itemstack))
             Cursor.select(entityplayer, Selection.Slot.SECONDARY);
     }

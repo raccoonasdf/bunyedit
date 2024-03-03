@@ -2,6 +2,8 @@ package fun.raccoon.bunyedit.data.mask.masks;
 
 import java.util.function.BiPredicate;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.data.mask.IMaskCommand;
 import net.minecraft.core.lang.I18n;
@@ -13,7 +15,7 @@ public class Cuboid implements IMaskCommand {
         return "[h]";
     }
 
-    public BiPredicate<Selection, ChunkPosition> build(String[] argv) {
+    public @Nonnull BiPredicate<Selection, ChunkPosition> build(String[] argv) {
         I18n i18n = I18n.getInstance();
         
         switch (argv.length) {

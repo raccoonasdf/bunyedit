@@ -4,6 +4,8 @@ import java.util.function.BiPredicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.data.mask.IMaskCommand;
 import net.minecraft.core.lang.I18n;
@@ -26,7 +28,7 @@ public class Ellipsoid implements IMaskCommand {
         return "[h]";
     }
 
-    public BiPredicate<Selection, ChunkPosition> build(String[] argv) {
+    public @Nonnull BiPredicate<Selection, ChunkPosition> build(String[] argv) {
         I18n i18n = I18n.getInstance();
 
         switch (argv.length) {
@@ -41,7 +43,7 @@ public class Ellipsoid implements IMaskCommand {
         }
     }
 
-    public static BiPredicate<Selection, ChunkPosition> p(boolean hollow) {
+    public static @Nonnull BiPredicate<Selection, ChunkPosition> p(boolean hollow) {
         return (selection, pos) -> {
             ChunkPosition s1 = selection.getPrimary();
             ChunkPosition s2 = selection.getSecondary();

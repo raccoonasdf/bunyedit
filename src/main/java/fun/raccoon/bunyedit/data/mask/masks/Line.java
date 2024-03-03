@@ -3,6 +3,8 @@ package fun.raccoon.bunyedit.data.mask.masks;
 import java.util.HashSet;
 import java.util.function.BiPredicate;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.data.mask.IMaskCommand;
 import fun.raccoon.bunyedit.data.mask.IterativeMask;
@@ -54,7 +56,7 @@ public class Line implements IMaskCommand {
         return "";
     }
 
-    public BiPredicate<Selection, ChunkPosition> build(String[] argv) {
+    public @Nonnull BiPredicate<Selection, ChunkPosition> build(String[] argv) {
         I18n i18n = I18n.getInstance();
         if (argv.length > 0)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));

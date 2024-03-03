@@ -3,6 +3,8 @@ package fun.raccoon.bunyedit.data;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.core.entity.player.EntityPlayer;
 
 /**
@@ -21,10 +23,7 @@ public class PlayerData {
         return playerData;
     }
 
-    public static PlayerData get(EntityPlayer player) {
-        if (player == null)
-            return null;
-
+    public static PlayerData get(@Nonnull EntityPlayer player) {
         return PlayerData.get(player.username);
     }
 

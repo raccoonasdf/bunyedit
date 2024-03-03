@@ -1,19 +1,22 @@
 package fun.raccoon.bunyedit.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import fun.raccoon.bunyedit.data.LookAxis;
 import fun.raccoon.bunyedit.data.LookDirection;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class RelCoords {
-    public static ChunkPosition playerPos(EntityPlayer player, boolean fromHead) {
+    public static ChunkPosition playerPos(@Nonnull EntityPlayer player, boolean fromHead) {
         return new ChunkPosition( 
             (int)Math.floor(player.x),
             ((int)Math.floor(player.y)) - (fromHead ? 2 : 1),
             (int)Math.floor(player.z));
     }
 
-    public static ChunkPosition from(ChunkPosition origin, LookDirection lookDir, String triple) {
+    public static @Nullable ChunkPosition from(ChunkPosition origin, LookDirection lookDir, String triple) {
         int[] origin_ = {origin.x, origin.y, origin.z};
         String[] triple_ = triple.split(",");
 
@@ -41,7 +44,7 @@ public class RelCoords {
         return PosMath.fromArray(res);
     }
     
-    public static ChunkPosition from(ChunkPosition origin, String triple) {
+    public static @Nullable ChunkPosition from(ChunkPosition origin, String triple) {
         int[] origin_ = {origin.x, origin.y, origin.z};
         String[] triple_ = triple.split(",");
 
@@ -68,8 +71,7 @@ public class RelCoords {
         return PosMath.fromArray(res);
     }
 
-
-    public static ChunkPosition from(EntityPlayer player, String triple) {
+    public static @Nullable ChunkPosition from(@Nonnull EntityPlayer player, String triple) {
         return from(playerPos(player, false), new LookDirection(player), triple);
     }
 }

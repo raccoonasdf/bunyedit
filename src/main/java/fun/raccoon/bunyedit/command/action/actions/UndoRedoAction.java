@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
 import fun.raccoon.bunyedit.data.BlockBuffer;
 import fun.raccoon.bunyedit.data.PlayerData;
@@ -21,7 +23,7 @@ public class UndoRedoAction implements IPlayerAction {
     }
 
     public boolean apply(
-        I18n i18n, CommandSender sender, EntityPlayer player,
+        I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
         PlayerData playerData, String[] argv
     ) {
         BlockBuffer page = this.which.equals(Which.UNDO)

@@ -6,7 +6,10 @@ import java.util.function.BiPredicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.util.PosMath;
+import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import net.minecraft.core.util.collection.Pair;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.ChunkPosition;
@@ -14,8 +17,9 @@ import net.minecraft.core.world.chunk.ChunkPosition;
 /**
  * Pair of coordinates representing a cuboid region of the world.
  * <p>
- * May be in an incomplete state (one or both corner positions are null). Make
- * sure to check {@link #isValid} if you need to.
+ * May be in an incomplete state (one or both corner positions are null). Nullable getters are
+ * not annotated as such. Make sure to check {@link #isValid} if you need to. Implementers of
+ * {@link ISelectionAction} do not need to worry about this.
  */
 public class Selection {
     /**
@@ -144,7 +148,7 @@ public class Selection {
      * selection is considered [0, 0, 0])
      * @return a {@link BlockBuffer} representing every block in this selection.
      */
-    public BlockBuffer copy(boolean relative) {
+    public @Nonnull BlockBuffer copy(boolean relative) {
         ChunkPosition origin = this.getPrimary();
         BlockBuffer page = new BlockBuffer();
 
@@ -158,7 +162,7 @@ public class Selection {
         return page;
     }
 
-    public void setBound(Pair<ChunkPosition, ChunkPosition> bound) {
+    public void setBound(@Nonnull Pair<ChunkPosition, ChunkPosition> bound) {
         this.setPrimary(this.world,
             PosMath.add(this.getPrimary(), bound.getLeft()));
         this.setSecondary(this.world,

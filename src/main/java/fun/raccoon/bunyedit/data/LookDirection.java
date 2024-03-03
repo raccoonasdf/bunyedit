@@ -3,6 +3,8 @@ package fun.raccoon.bunyedit.data;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.util.helper.Axis;
 import net.minecraft.core.util.helper.Direction;
@@ -34,10 +36,6 @@ public class LookDirection {
         int yRotInt = rotInt[0];
         int xRotInt = rotInt[1];
 
-        // 0=sway 1=heave 2=surge
-        //int[] map = new int[3];
-        //boolean[] invMap = new boolean[3];
-
         // heading along z on even, x on odd
         Axis yRotDir = (yRotInt&1) == 0 ? Axis.Z : Axis.X;
         // middle semicircle heads negative
@@ -64,7 +62,7 @@ public class LookDirection {
         this(yRot, 0F);
     }
 
-    public LookDirection(EntityPlayer player) {
+    public LookDirection(@Nonnull EntityPlayer player) {
         this(player.yRot, player.xRot);
     }
 

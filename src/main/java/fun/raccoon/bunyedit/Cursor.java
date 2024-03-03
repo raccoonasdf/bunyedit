@@ -1,5 +1,8 @@
 package fun.raccoon.bunyedit;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
 import fun.raccoon.bunyedit.util.ChatString;
@@ -55,7 +58,7 @@ public class Cursor {
      * <p>
      * for flexibility, deliberately choosing to not be strict about the {@link Item}
      */
-    public static boolean isCursorItem(ItemStack stack) {
+    public static boolean isCursorItem(@Nullable ItemStack stack) {
         return stack != null && stack.getData().getBoolean("bunyedit.cursor");
     }
 
@@ -80,7 +83,7 @@ public class Cursor {
      * coordinates in the specified selection slot. Additionally provide slot,
      * coordinate, and selected block in chat.
      */
-    public static void select(EntityPlayer player, Selection.Slot slot) {
+    public static void select(@Nonnull EntityPlayer player, Selection.Slot slot) {
         I18n i18n = I18n.getInstance();
         PlayerData playerData = PlayerData.get(player);
         World world = player.world;
@@ -102,7 +105,7 @@ public class Cursor {
             direction.xCoord * TRACE_DISTANCE,
             direction.yCoord * TRACE_DISTANCE,
             direction.zCoord * TRACE_DISTANCE);
-        HitResult hit = world.checkBlockCollisionBetweenPoints(start, end);
+        @Nullable HitResult hit = world.checkBlockCollisionBetweenPoints(start, end);
 
         if (hit != null && hit.hitType.equals(HitType.TILE)) {
             ChunkPosition pos = new ChunkPosition(hit.x, hit.y, hit.z);

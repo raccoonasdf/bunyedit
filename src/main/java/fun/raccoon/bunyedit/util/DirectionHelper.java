@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.util;
 
+import javax.annotation.Nullable;
+
 import fun.raccoon.bunyedit.data.LookAxis;
 import fun.raccoon.bunyedit.data.LookDirection;
 import net.minecraft.core.util.helper.Axis;
@@ -33,7 +35,7 @@ public class DirectionHelper {
         return null;
     }
 
-    public static Direction fromAbbrev(String string) {
+    public static @Nullable Direction fromAbbrev(String string) {
         switch (string) {
             case "E": return Direction.EAST;
             case "W": return Direction.WEST;

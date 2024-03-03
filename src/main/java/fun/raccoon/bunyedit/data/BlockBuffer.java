@@ -21,12 +21,6 @@ public class BlockBuffer extends HashMap<ChunkPosition, BlockData> {
     public void placeRaw(World world, ChunkPosition pos, BlockData blockData) {
         this.put(pos, blockData);
 
-        //Block oldBlock = world.getBlock(pos.x, pos.y, pos.z);
-        //if (oldBlock != null) {
-        //    int oldMeta = world.getBlockMetadata(pos.x, pos.y, pos.z);
-        //    oldBlock.onBlockRemoved(world, pos.x, pos.y, pos.z, oldMeta);
-        //}
-
         world.setBlockRaw(pos.x, pos.y, pos.z, blockData.id);
         world.setBlockMetadata(pos.x, pos.y, pos.z, blockData.meta);
         if (blockData.nbt != null)
@@ -39,7 +33,7 @@ public class BlockBuffer extends HashMap<ChunkPosition, BlockData> {
     public void finalize(World world) {
         List<Pair<Integer, Integer>> recalced = new ArrayList<>();
 
-        for ( Entry<ChunkPosition, BlockData> entry : this.entrySet()) {
+        for (Entry<ChunkPosition, BlockData> entry : this.entrySet()) {
             ChunkPosition pos = entry.getKey();
             BlockData blockData = entry.getValue();
 
@@ -60,7 +54,6 @@ public class BlockBuffer extends HashMap<ChunkPosition, BlockData> {
             //    block.onBlockAdded(world, pos.x, pos.y, pos.z);
 
             world.notifyBlockChange(pos.x, pos.y, pos.z, blockData.id);
-
         }
     }
 }

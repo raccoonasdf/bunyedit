@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import javax.annotation.Nonnull;
+
 import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.Selection;
@@ -13,7 +15,7 @@ import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class GrowSelectionAction implements ISelectionAction {
     public boolean apply(
-        I18n i18n, CommandSender sender, EntityPlayer player,
+        I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
         PlayerData playerData, Selection selection, String[] argv
     ) {
         Pair<ChunkPosition, ChunkPosition> growBy;
@@ -23,12 +25,13 @@ public class GrowSelectionAction implements ISelectionAction {
                 break;
             case 1:
                 growBy = Bound.fromString(selection, player, argv[0]);
-                if (growBy == null)
-                    throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidbound"));
                 break;
             default:
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         }
+
+        if (growBy == null)
+            throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidbound"));
 
         selection.setBound(growBy);
 
