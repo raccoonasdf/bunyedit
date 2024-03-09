@@ -38,21 +38,30 @@ public class MoveAction implements ISelectionAction {
         BlockBuffer before = selection.copy(false);
         BlockBuffer after = new BlockBuffer();
 
+        // three seperate loops to obviate previous bug where copy and paste positions overlap
+
+        // populate undo
         BlockBuffer copyBuffer = selection.copy(true);
         copyBuffer.forEach((pos, blockData) -> {
             ChunkPosition copyPos = PosMath.add(pos, copyOrigin);
             ChunkPosition pastePos = PosMath.add(pos, pasteOrigin);
 
-            // copyPos had what's in the copyBuffer
             before.put(copyPos, blockData);
-            // and pastePos had what's in the world right now
             before.put(pastePos, new BlockData(player.world, pastePos));
+        });
 
-            // but now pastePos has what's in the copyBuffer
-            after.placeRaw(player.world, pastePos, blockData);
+        // clear
+        copyBuffer.forEach((pos, blockData) -> {
+            ChunkPosition copyPos = PosMath.add(pos, copyOrigin);
 
-            // and copyPos has nothing
             after.placeRaw(player.world, copyPos, air);
+        });
+
+        // paste
+        copyBuffer.forEach((pos, blockData) -> {
+            ChunkPosition pastePos = PosMath.add(pos, pasteOrigin);
+
+            after.placeRaw(player.world, pastePos, blockData);
         });
         after.finalize(player.world);
         

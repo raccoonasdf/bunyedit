@@ -26,13 +26,14 @@ public class FlipAction implements ISelectionAction {
         switch (argv.length) {
             case 0: break;
             case 1:
-                if (argv[1] == "^")
+                if (argv[0] == "^")
                     break;
                 try {
-                    Axis.valueOf(argv[1].toUpperCase());
+                    axis = Axis.valueOf(argv[0].toUpperCase());
                 } catch (IllegalArgumentException e) {
                     throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invaliddirection"));
                 }
+                break;
             default:
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         }
@@ -49,12 +50,13 @@ public class FlipAction implements ISelectionAction {
         BlockBuffer before = selection.copy(false);
         BlockBuffer after = new BlockBuffer();
 
+        Axis axis_ = axis;
         BlockBuffer copyBuffer = selection.copy(false);
         copyBuffer.forEach((pos, blockData) -> {
-            blockData = Reorient.flipped(blockData, axis);
+            blockData = Reorient.flipped(blockData, axis_);
 
             int[] posa = PosMath.toArray(pos);
-            posa[axis.ordinal()] = side2 - (posa[axis.ordinal()] - side1);
+            posa[axis_.ordinal()] = side2 - (posa[axis_.ordinal()] - side1);
             pos = PosMath.fromArray(posa);
 
             after.placeRaw(player.world, pos, blockData);
