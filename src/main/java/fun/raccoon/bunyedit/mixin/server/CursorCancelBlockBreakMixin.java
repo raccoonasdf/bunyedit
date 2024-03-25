@@ -1,16 +1,15 @@
 package fun.raccoon.bunyedit.mixin.server;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
-
 import fun.raccoon.bunyedit.Cursor;
 import net.minecraft.core.net.packet.Packet53BlockChange;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.server.entity.player.EntityPlayerMP;
 import net.minecraft.server.net.handler.NetServerHandler;
-import net.minecraft.server.world.PlayerController;
+import net.minecraft.server.world.ServerPlayerController;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
  * im gonna be honest i have no idea what im doing
@@ -31,9 +30,9 @@ public abstract class CursorCancelBlockBreakMixin {
         method = "handleBlockDig",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/server/world/PlayerController;destroyBlock(III)Z"))
+            target = "Lnet/minecraft/server/world/ServerPlayerController;destroyBlock(III)Z"))
     private boolean destroyBlockRedirect(
-        PlayerController playerController, int x, int y, int z
+            ServerPlayerController playerController, int x, int y, int z
     ) {
         if (Cursor.isCursorItem(playerEntity.inventory.getCurrentItem()))
             return false;
@@ -44,9 +43,9 @@ public abstract class CursorCancelBlockBreakMixin {
         method = "handleBlockDig",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/server/world/PlayerController;startMining(IIILnet/minecraft/core/util/helper/Side;)V"))
+            target = "Lnet/minecraft/server/world/ServerPlayerController;startMining(IIILnet/minecraft/core/util/helper/Side;)V"))
     private void startMiningRedirect(
-        PlayerController playerController, int x, int y, int z, Side side
+            ServerPlayerController playerController, int x, int y, int z, Side side
     ) {
         if (Cursor.isCursorItem(playerEntity.inventory.getCurrentItem())) {
             playerEntity.playerNetServerHandler.sendPacket(
