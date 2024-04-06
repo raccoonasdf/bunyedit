@@ -1,4 +1,4 @@
-0.7.0 [in progress]
+0.7.0
 -----
 - Updated dependencies. Now building against BTA 7.1-pre2a (PR by UselessBullets)
 - Added selection limits. If your selection exceeds a certain volume
