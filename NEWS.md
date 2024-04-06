@@ -1,5 +1,6 @@
 0.7.0 [in progress]
 -----
+- Updated dependencies. Now building against BTA 7.1-pre2a (PR by UselessBullets)
 - Added selection limits. If your selection exceeds a certain volume
   (131072 by default), commands involving it will fail. You can use
   `//limit [int|no]` to change the limit
