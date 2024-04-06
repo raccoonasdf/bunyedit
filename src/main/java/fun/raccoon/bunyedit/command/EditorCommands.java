@@ -49,7 +49,7 @@ public class EditorCommands {
         );
         LIST.add(
             new EditorCommandBuilder("limit")
-                .usage("[int|no]")
+                .usage("[int|\"no\"]")
                 .action(new LimitAction())
                 .build()
         );
