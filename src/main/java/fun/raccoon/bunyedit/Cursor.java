@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.selection.Selection;
+import fun.raccoon.bunyedit.mixin.WorldAccessor;
 import fun.raccoon.bunyedit.util.ChatString;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.EntityPlayerSP;
@@ -86,7 +87,7 @@ public class Cursor {
         World world = player.world;
 
         // don't pay attention to duplicate interactions on the same tick
-        if (!playerData.lastInteract.tryUpdate(world.getWorldTime()))
+        if (!playerData.lastInteract.tryUpdate(((WorldAccessor) world).getRuntime()))
             return;
 
         Vec3d start = player.getPosition(0);

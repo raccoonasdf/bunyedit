@@ -6,7 +6,8 @@
   "mixins": [
     "InitCommandsMixin",
     "CursorRightClickMixin",
-    "BlockSignAccessor"
+    "BlockSignAccessor",
+    "WorldAccessor"
   ],
   "client": [
     "client.CursorCancelBlockBreakMixin",

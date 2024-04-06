@@ -5,6 +5,7 @@
   (131072 by default), commands involving it will fail. You can use
   `//limit [int|no]` to change the limit
 - Fixed `//flip ^`
+- Fixed cursor selection when `doDaylightCycle` is false
 
 0.6.0
 -----
