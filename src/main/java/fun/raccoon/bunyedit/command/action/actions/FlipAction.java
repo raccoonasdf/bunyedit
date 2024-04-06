@@ -26,7 +26,7 @@ public class FlipAction implements ISelectionAction {
         switch (argv.length) {
             case 0: break;
             case 1:
-                if (argv[0] == "^")
+                if (argv[0].equals("^"))
                     break;
                 try {
                     axis = Axis.valueOf(argv[0].toUpperCase());
