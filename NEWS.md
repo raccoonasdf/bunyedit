@@ -1,3 +1,8 @@
+0.7.1
+-----
+- Updated for BTA 7.1. No meaningful changes from 0.7.0
+- "7.1" in our version string for the BTA 7.1 update, isn't that fun :)
+
 0.7.0
 -----
 - Updated dependencies. Now building against BTA 7.1-pre2a (PR by UselessBullets)
