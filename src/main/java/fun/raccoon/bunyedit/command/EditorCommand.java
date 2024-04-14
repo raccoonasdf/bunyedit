@@ -7,8 +7,10 @@ import java.util.function.Predicate;
 import fun.raccoon.bunyedit.command.action.IAction;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.Command;
+import net.minecraft.core.net.command.CommandError;
 import net.minecraft.core.net.command.CommandHandler;
 import net.minecraft.core.net.command.CommandSender;
+import net.minecraft.core.net.command.TextFormatting;
 
 public class EditorCommand extends Command {
     private List<String> usage = new ArrayList<>();
@@ -57,6 +59,11 @@ public class EditorCommand extends Command {
     }
 
     public boolean execute(CommandHandler handler, CommandSender sender, String[] argv) {
-        return this.action.apply(I18n.getInstance(), sender, argv);
+        try {
+            return this.action.apply(I18n.getInstance(), sender, argv);
+        } catch (CommandError e) {
+            sender.sendMessage(TextFormatting.formatted(e.getMessage(), TextFormatting.RED));
+            return false;
+        }
     }
 }
