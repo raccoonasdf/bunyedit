@@ -32,6 +32,10 @@ code.
 - Copy and paste, undo and redo!
 - Plays nice with tile entities! (e.g. chests will copy with their inventories intact)
 
+## download
+
+you can find finished releases on [the releases page](https://github.com/raccoonasdf/bunyedit/releases). or, you can download development jars by going to [the actions page](https://github.com/raccoonasdf/bunyedit/actions), selecting the build you want, scrolling down to "Artifacts", and clicking on "build artifact".
+
 ## documentation
 
 see [the wiki](https://wiki.raccoon.fun/minecraft:mod:my-mods:bunyedit:start)!
