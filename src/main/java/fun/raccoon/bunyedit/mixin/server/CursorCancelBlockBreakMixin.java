@@ -30,13 +30,13 @@ public abstract class CursorCancelBlockBreakMixin {
         method = "handleBlockDig",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/server/world/ServerPlayerController;destroyBlock(III)Z"))
+            target = "Lnet/minecraft/server/world/ServerPlayerController;destroyBlock(IIILnet/minecraft/core/util/helper/Side;)Z"))
     private boolean destroyBlockRedirect(
-            ServerPlayerController playerController, int x, int y, int z
+            ServerPlayerController playerController, int x, int y, int z, Side side
     ) {
         if (Cursor.isCursorItem(playerEntity.inventory.getCurrentItem()))
             return false;
-        return playerController.destroyBlock(x, y, z);
+        return playerController.destroyBlock(x, y, z, Side.NONE);
     }
 
     @Redirect(
