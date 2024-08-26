@@ -1,15 +1,15 @@
 package fun.raccoon.bunyedit.data.buffer;
+public class WorldBuffer {
+    public BlockBuffer blocks;
+    public EntityBuffer entities;
 
-import javax.annotation.Nonnull;
-
-import net.minecraft.core.util.collection.Pair;
-
-public class WorldBuffer extends Pair<BlockBuffer, EntityBuffer> {
-    protected WorldBuffer(BlockBuffer left, EntityBuffer right) {
-        super(left, right);
+    public WorldBuffer(BlockBuffer blocks, EntityBuffer entities) {
+        this.blocks = blocks;
+        this.entities = entities;
     }
 
-    public static @Nonnull WorldBuffer of(BlockBuffer left, EntityBuffer right) {
-        return new WorldBuffer(left, right);
+    public WorldBuffer() {
+        this.blocks = new BlockBuffer();
+        this.entities = new EntityBuffer();
     }
 }

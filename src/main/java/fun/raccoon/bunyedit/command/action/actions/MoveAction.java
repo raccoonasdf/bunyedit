@@ -8,6 +8,7 @@ import fun.raccoon.bunyedit.command.action.ISelectionAction;
 import fun.raccoon.bunyedit.data.PlayerData;
 import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
 import fun.raccoon.bunyedit.data.buffer.BlockData;
+import fun.raccoon.bunyedit.data.buffer.WorldBuffer;
 import fun.raccoon.bunyedit.data.look.LookDirection;
 import fun.raccoon.bunyedit.data.selection.ValidSelection;
 import fun.raccoon.bunyedit.util.PosMath;
@@ -18,6 +19,7 @@ import net.minecraft.core.net.command.CommandError;
 import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
+    // TODO: actually implement entity copying
 public class MoveAction implements ISelectionAction {
     @Override
     public boolean apply(
@@ -38,8 +40,10 @@ public class MoveAction implements ISelectionAction {
 
         BlockData air = new BlockData();
 
-        BlockBuffer before = selection.copy(false);
-        BlockBuffer after = new BlockBuffer();
+        WorldBuffer before = selection.copyWorld(false);
+        WorldBuffer after = new WorldBuffer();
+
+        
 
         // three seperate loops to obviate previous bug where copy and paste positions overlap
 
@@ -49,24 +53,24 @@ public class MoveAction implements ISelectionAction {
             ChunkPosition copyPos = PosMath.add(pos, copyOrigin);
             ChunkPosition pastePos = PosMath.add(pos, pasteOrigin);
 
-            before.put(copyPos, blockData);
-            before.put(pastePos, new BlockData(player.world, pastePos));
+            before.blocks.put(copyPos, blockData);
+            before.blocks.put(pastePos, new BlockData(player.world, pastePos));
         });
 
         // clear
         copyBuffer.forEach((pos, blockData) -> {
             ChunkPosition copyPos = PosMath.add(pos, copyOrigin);
 
-            after.placeRaw(player.world, copyPos, air);
+            after.blocks.placeRaw(player.world, copyPos, air);
         });
 
         // paste
         copyBuffer.forEach((pos, blockData) -> {
             ChunkPosition pastePos = PosMath.add(pos, pasteOrigin);
 
-            after.placeRaw(player.world, pastePos, blockData);
+            after.blocks.placeRaw(player.world, pastePos, blockData);
         });
-        after.finalize(player.world);
+        after.blocks.finalize(player.world);
         
         playerData.getUndoTape(player.world).push(before, after);
 

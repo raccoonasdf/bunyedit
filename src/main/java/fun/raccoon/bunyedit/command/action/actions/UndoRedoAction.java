@@ -48,9 +48,9 @@ public class UndoRedoAction implements IPlayerAction {
                     : "bunyedit.cmd.undoredo.redo")));
         }
 
-        BlockBuffer newBlocks = page.getRight().getLeft();
-        EntityBuffer oldEnts = page.getLeft().getRight();
-        EntityBuffer newEnts = page.getRight().getRight();
+        BlockBuffer newBlocks = page.getRight().blocks;
+        EntityBuffer oldEnts = page.getLeft().entities;
+        EntityBuffer newEnts = page.getRight().entities;
 
         BlockBuffer after = new BlockBuffer();
         newBlocks.forEach((pos, blockData) -> {

@@ -1,5 +1,6 @@
 package fun.raccoon.bunyedit.data.selection;
 
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -8,8 +9,12 @@ import javax.annotation.Nullable;
 
 import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
 import fun.raccoon.bunyedit.data.buffer.BlockData;
+import fun.raccoon.bunyedit.data.buffer.EntityBuffer;
+import fun.raccoon.bunyedit.data.buffer.WorldBuffer;
 import fun.raccoon.bunyedit.data.selection.Selection.Slot;
 import fun.raccoon.bunyedit.util.PosMath;
+import net.minecraft.core.entity.Entity;
+import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 /**
@@ -36,6 +41,10 @@ public class ValidSelection {
         } catch (InvalidSelectionException e) {
             return null;
         }
+    }
+
+    public Selection copyInner() {
+        return new Selection(this.selection);
     }
 
     public boolean equals(ValidSelection other) {
@@ -73,7 +82,11 @@ public class ValidSelection {
             x -> this.rangeClosed(primary.y, secondary.y).flatMap(
                 y -> this.rangeClosed(primary.z, secondary.z).map(
                     z -> new ChunkPosition(x, y, z))))
-            .filter(pos -> this.selection.getMask().test(this, pos));
+            .filter(pos -> this.isOver(pos));
+    }
+
+    public boolean isOver(ChunkPosition pos) {
+        return this.selection.getMask().test(this, pos);
     }
 
     /**
@@ -93,5 +106,26 @@ public class ValidSelection {
         });
 
         return page;
+    }
+
+    public @Nonnull WorldBuffer copyWorld(boolean relative) {
+        ChunkPosition min = PosMath.min(this.getPrimary(), this.getSecondary());
+        ChunkPosition max = PosMath.max(this.getPrimary(), this.getSecondary());
+
+        List<Entity> entities = this.selection.getWorld().getEntitiesWithinAABB(
+            Entity.class,
+            new AABB(
+                min.x, min.y, min.z,
+                max.x, max.y, max.z));
+
+        EntityBuffer page = new EntityBuffer();
+        
+        for (Entity entity : entities) {
+            if (this.isOver(new ChunkPosition((int)entity.x, (int)entity.y, (int)entity.z))) {
+                page.add(entity);
+            }
+        }
+
+        return new WorldBuffer(this.copy(relative), page);
     }
 }

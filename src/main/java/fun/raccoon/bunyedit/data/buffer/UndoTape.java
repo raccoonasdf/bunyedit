@@ -20,7 +20,7 @@ public class UndoTape {
 
 
     public void push(@Nonnull BlockBuffer before, @Nonnull BlockBuffer after) {
-        this.push(WorldBuffer.of(before, new EntityBuffer()), WorldBuffer.of(after, new EntityBuffer()));
+        this.push(new WorldBuffer(before, new EntityBuffer()), new WorldBuffer(after, new EntityBuffer()));
     }
 
     /**
