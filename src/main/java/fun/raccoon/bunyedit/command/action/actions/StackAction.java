@@ -1,5 +1,6 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -12,7 +13,7 @@ import fun.raccoon.bunyedit.data.look.LookDirection;
 import fun.raccoon.bunyedit.data.selection.ValidSelection;
 import fun.raccoon.bunyedit.util.DirectionHelper;
 import fun.raccoon.bunyedit.util.PosMath;
-import fun.raccoon.bunyedit.util.argparse.RelCoords;
+import fun.raccoon.bunyedit.util.parsers.RelCoords;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -21,11 +22,12 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class StackAction implements ISelectionAction {
+    @Override
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, ValidSelection selection, String[] argv
+        PlayerData playerData, ValidSelection selection, List<String> argv
     ) {
-        if (argv.length > 3)
+        if (argv.size() > 3)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
 
         LookDirection lookDir = new LookDirection(player);
@@ -33,24 +35,24 @@ public class StackAction implements ISelectionAction {
         Direction direction = DirectionHelper.from(lookDir);
         int times = 1;
         ChunkPosition offset = PosMath.all(0);
-        if (argv.length >= 1) {
+        if (argv.size() >= 1) {
             try {
-                times = Integer.parseInt(argv[0]);
+                times = Integer.parseInt(argv.get(0));
             } catch (NumberFormatException e) {
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidnumber"));
             }
             if (times < 0)
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidnumber"));
         }
-        if (argv.length >= 2) {
-            if (!argv[1].equals("^")) {
-                direction = DirectionHelper.fromAbbrev(argv[1].toUpperCase());
+        if (argv.size() >= 2) {
+            if (!argv.get(1).equals("^")) {
+                direction = DirectionHelper.fromAbbrev(argv.get(1).toUpperCase());
                 if (direction == null)
                     throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invaliddirection"));
             }
         }
-        if (argv.length == 3) {
-            offset = RelCoords.from(offset, lookDir, argv[2]);
+        if (argv.size() == 3) {
+            offset = RelCoords.from(offset, lookDir, argv.get(2));
         }
         
         ChunkPosition s1 = playerData.selection.getPrimary();

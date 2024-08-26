@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.util.argparse;
+package fun.raccoon.bunyedit.util.parsers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +20,7 @@ import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.material.MaterialColor;
 
 public class Filter {
+    // TODO: parser combinator
     private static @Nonnull Predicate<BlockData> join(@Nonnull List<Predicate<BlockData>> predicates) {
         @Nullable Predicate<BlockData> predicate = predicates.stream().reduce((p, q) -> p.or(q)).get();
 

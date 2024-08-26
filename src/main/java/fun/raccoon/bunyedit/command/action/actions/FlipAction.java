@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import fun.raccoon.bunyedit.command.action.ISelectionAction;
@@ -18,18 +20,19 @@ import net.minecraft.core.util.helper.Axis;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class FlipAction implements ISelectionAction {
+    @Override
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, ValidSelection selection, String[] argv
+        PlayerData playerData, ValidSelection selection, List<String> argv
     ) {
         Axis axis = new LookDirection(player.yRot, player.xRot).globalAxis(LookAxis.SURGE);
-        switch (argv.length) {
+        switch (argv.size()) {
             case 0: break;
             case 1:
-                if (argv[0].equals("^"))
+                if (argv.get(0).equals("^"))
                     break;
                 try {
-                    axis = Axis.valueOf(argv[0].toUpperCase());
+                    axis = Axis.valueOf(argv.get(0).toUpperCase());
                 } catch (IllegalArgumentException e) {
                     throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invaliddirection"));
                 }

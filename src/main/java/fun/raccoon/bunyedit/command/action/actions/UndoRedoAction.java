@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import fun.raccoon.bunyedit.command.action.IPlayerAction;
@@ -25,10 +27,14 @@ public class UndoRedoAction implements IPlayerAction {
         this.which = which;
     }
 
+    @Override
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, String[] argv
+        PlayerData playerData, List<String> argv
     ) {
+        if (argv.size() > 0)
+            throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
+
         UndoTape undoTape = playerData.getUndoTape(player.world);
         UndoPage page = this.which.equals(Which.UNDO)
             ? undoTape.undo()

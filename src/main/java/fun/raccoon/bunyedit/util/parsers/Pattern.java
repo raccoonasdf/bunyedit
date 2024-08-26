@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.util.argparse;
+package fun.raccoon.bunyedit.util.parsers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +20,7 @@ import net.minecraft.core.net.command.TextFormatting;
 import net.minecraft.core.util.collection.Pair;
 
 public class Pattern {
+    // TODO: parser combinator
     private static @Nullable BlockData blockDataFromString(CommandSender sender, String patternStr)
         throws CommandError
     {

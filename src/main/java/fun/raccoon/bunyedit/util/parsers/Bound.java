@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.util.argparse;
+package fun.raccoon.bunyedit.util.parsers;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,6 +20,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class Bound {
+    // TODO: parser combinator
     /**
      * Parses a bound argument.
      * @param selection selection to offset

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.jparsec.error.ParserException;
+
 import fun.raccoon.bunyedit.command.action.IAction;
+import fun.raccoon.bunyedit.util.parsers.CmdArgs;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.Command;
 import net.minecraft.core.net.command.CommandError;
@@ -59,8 +62,20 @@ public class EditorCommand extends Command {
     }
 
     public boolean execute(CommandHandler handler, CommandSender sender, String[] argv) {
+        I18n i18n = I18n.getInstance();
+
         try {
-            return this.action.apply(I18n.getInstance(), sender, argv);
+            List<String> argv_ = CmdArgs.parse(String.join(" ", argv));
+
+            return this.action.apply(
+                I18n.getInstance(), sender,
+                argv_);
+        } catch (ParserException e) {
+            sender.sendMessage(
+                TextFormatting.formatted(
+                    i18n.translateKey("bunyedit.cmd.err.parseargs"),
+                    TextFormatting.RED));
+            return false;
         } catch (CommandError e) {
             sender.sendMessage(TextFormatting.formatted(e.getMessage(), TextFormatting.RED));
             return false;

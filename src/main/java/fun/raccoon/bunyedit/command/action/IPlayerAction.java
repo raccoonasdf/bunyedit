@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -12,10 +14,10 @@ import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.player.gamemode.Gamemode;
 
 public interface IPlayerAction extends IAction {
-    public boolean apply(I18n i18n, CommandSender sender, @Nonnull EntityPlayer player, PlayerData playerData, String[] argv);
+    public boolean apply(I18n i18n, CommandSender sender, @Nonnull EntityPlayer player, PlayerData playerData, List<String> argv);
 
     @Override
-    default public boolean apply(I18n i18n, CommandSender sender, String[] argv) {
+    default public boolean apply(I18n i18n, CommandSender sender, List<String> argv) {
         @Nullable EntityPlayer player = sender.getPlayer();
         if (player == null)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.notaplayer"));

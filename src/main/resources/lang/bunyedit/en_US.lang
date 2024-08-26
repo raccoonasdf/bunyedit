@@ -22,6 +22,7 @@ bunyedit.cmd.err.ambiguouskey=ambiguous key "%s"
 bunyedit.cmd.err.ambiguouskey.remap=was remapped to "%s"!
 bunyedit.cmd.err.ambiguouskey.try=try appending: %s
 bunyedit.cmd.err.selectiontoolarge=your selection exceeds the limit (it's %s blocks in volume)! if this wasn't a mistake, use `//limit [int|no]` to change the limit.
+bunyedit.cmd.err.parseargs=failed to parse args!
 
 bunyedit.cmd.copy.success=copied!
 

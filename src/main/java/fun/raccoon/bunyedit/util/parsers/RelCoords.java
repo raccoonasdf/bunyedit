@@ -1,4 +1,4 @@
-package fun.raccoon.bunyedit.util.argparse;
+package fun.raccoon.bunyedit.util.parsers;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -10,6 +10,7 @@ import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class RelCoords {
+    // TODO: parser combinator
     public static ChunkPosition playerPos(@Nonnull EntityPlayer player, boolean fromHead) {
         return new ChunkPosition( 
             (int)Math.floor(player.x),

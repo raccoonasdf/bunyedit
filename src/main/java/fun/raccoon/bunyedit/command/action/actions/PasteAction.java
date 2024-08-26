@@ -1,5 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import fun.raccoon.bunyedit.command.action.ISelectionAction;
@@ -15,11 +17,12 @@ import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class PasteAction implements ISelectionAction {
+    @Override
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, ValidSelection selection, String[] argv
+        PlayerData playerData, ValidSelection selection, List<String> argv
     ) {
-        if (argv.length > 0)
+        if (argv.size() > 0)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         
         ChunkPosition origin = selection.getPrimary();

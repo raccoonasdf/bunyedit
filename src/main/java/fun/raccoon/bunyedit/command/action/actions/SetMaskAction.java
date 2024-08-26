@@ -1,6 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
@@ -20,19 +21,20 @@ import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.world.chunk.ChunkPosition;
 
 public class SetMaskAction implements IPlayerAction {
+    @Override
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, String[] argv
+        PlayerData playerData, List<String> argv
     ) {
         String maskName;
-        switch (argv.length) {
+        switch (argv.size()) {
             case 0:
                 sender.sendMessage(String.format("%s: %s",
                     i18n.translateKey("bunyedit.cmd.mask.current"),
                     playerData.selection.getMaskName()));
                 return true;
             default:
-                maskName = argv[0];
+                maskName = argv.get(0);
                 break;
         }
 
@@ -54,8 +56,8 @@ public class SetMaskAction implements IPlayerAction {
             throw new CommandError(i18n.translateKeyAndFormat("bunyedit.cmd.mask.err.nosuchmask", maskName));
 
         String[] maskArgv = {};
-        if (argv.length >= 1) {
-            maskArgv = Arrays.copyOfRange(argv, 1, argv.length);
+        if (argv.size() >= 1) {
+            maskArgv = argv.subList(1, argv.size()).toArray(new String[0]);
         }
 
         BiPredicate<ValidSelection, ChunkPosition> mask = maskCmd.build(maskArgv);

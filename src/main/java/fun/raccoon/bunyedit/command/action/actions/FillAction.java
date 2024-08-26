@@ -1,6 +1,7 @@
 package fun.raccoon.bunyedit.command.action.actions;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -14,9 +15,9 @@ import fun.raccoon.bunyedit.data.buffer.BlockBuffer;
 import fun.raccoon.bunyedit.data.buffer.BlockData;
 import fun.raccoon.bunyedit.data.selection.ValidSelection;
 import fun.raccoon.bunyedit.util.PosMath;
-import fun.raccoon.bunyedit.util.argparse.Bound;
-import fun.raccoon.bunyedit.util.argparse.Filter;
-import fun.raccoon.bunyedit.util.argparse.Pattern;
+import fun.raccoon.bunyedit.util.parsers.Bound;
+import fun.raccoon.bunyedit.util.parsers.Filter;
+import fun.raccoon.bunyedit.util.parsers.Pattern;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.CommandError;
@@ -49,26 +50,27 @@ public class FillAction implements ISelectionAction {
         }        
     }
 
+    @Override
     public boolean apply(
         I18n i18n, CommandSender sender, @Nonnull EntityPlayer player,
-        PlayerData playerData, ValidSelection selection, String[] argv
+        PlayerData playerData, ValidSelection selection, List<String> argv
     ) {
-        if (argv.length < 2)
+        if (argv.size() < 2)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toofewargs"));
-        if (argv.length > 3)
+        if (argv.size() > 3)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.toomanyargs"));
         
-        Predicate<BlockData> filter = Filter.fromString(argv[0]);
+        Predicate<BlockData> filter = Filter.fromString(argv.get(0));
         if (filter == null)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidfilter"));   
             
-        Function<BlockData, BlockData> pattern = Pattern.fromString(sender, argv[1]);
+        Function<BlockData, BlockData> pattern = Pattern.fromString(sender, argv.get(1));
         if (pattern == null)
             throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidpattern"));
      
         Pair<ChunkPosition, ChunkPosition> bound;
-        if (argv.length == 3) {
-            bound = Bound.fromString(selection, player, "*16,"+argv[2]);
+        if (argv.size() == 3) {
+            bound = Bound.fromString(selection, player, "*16,"+argv.get(2));
             if (bound == null)
                 throw new CommandError(i18n.translateKey("bunyedit.cmd.err.invalidbound"));        
         } else {
