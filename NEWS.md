@@ -1,3 +1,13 @@
+0.7.2
+-----
+- Updated for BTA 7.2
+- Initial work on implementing command parsers in JParsec to make it
+  easier to create new syntax etc
+- Added `-m <mask>`: specify a mask for a single invocation of any
+  selection command!
+- Added parentheses to support arguments with spaces, such as masks with
+  arguments of their own
+
 0.7.1
 -----
 - Updated for BTA 7.1. No meaningful changes from 0.7.0
