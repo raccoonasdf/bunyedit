@@ -36,7 +36,7 @@ public abstract class CursorCancelBlockBreakMixin {
     ) {
         if (Cursor.isCursorItem(playerEntity.inventory.getCurrentItem()))
             return false;
-        return playerController.destroyBlock(x, y, z, Side.NONE);
+        return playerController.destroyBlock(x, y, z, side);
     }
 
     @Redirect(
