@@ -14,9 +14,9 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
 @Mixin(value = Item.class, remap = false)
-public abstract class CursorRightClickMixin {
+public abstract class CursorUseMixin {
     @Inject(method = "onUseItem", at = @At("TAIL"))
-    private void onItemRightClickCheckCursor(ItemStack itemstack, World world, EntityPlayer entityplayer, CallbackInfoReturnable<ItemStack> cir) {
+    private void onUseItemCheckCursor(ItemStack itemstack, World world, EntityPlayer entityplayer, CallbackInfoReturnable<ItemStack> cir) {
         // serverside has this covered in multiplayer
         if (entityplayer != null && !(entityplayer instanceof EntityClientPlayerMP)
                 && Cursor.isCursorItem(itemstack))
