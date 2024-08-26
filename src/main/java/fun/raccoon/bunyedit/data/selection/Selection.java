@@ -57,7 +57,7 @@ public class Selection {
     }
 
     public Selection(Selection selection) {
-        this.selection = selection.selection;
+        this.selection = new HashMap<Slot, ChunkPosition>(selection.selection);
         this.world = selection.world;
         this.mask = selection.mask;
     }
