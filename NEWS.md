@@ -1,3 +1,7 @@
+0.7.3
+-----
+- Embed JParsec to avoid missing dependency
+
 0.7.2
 -----
 - Updated for BTA 7.2
